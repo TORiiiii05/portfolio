@@ -34,10 +34,10 @@ export default function ProjectsMusic() {
         </div>
         <div className={styles.featuredContent}>
           <h2 className={styles.featuredTitle}>Statimusic</h2>
-          <p className={styles.featuredTagline}>
+          <p className={styles.featuredTagline} style={{ maxWidth: 'none' }}>
             Vos écoutes musicales méritent mieux qu'un Wrapped annuel.
           </p>
-          <div className={styles.featuredDesc}>
+          <div className={styles.featuredDesc} style={{ maxWidth: 'none' }}>
             <p>
               Statimusic est né d'une frustration simple : les plateformes de streaming ne donnent
               accès qu'à une infime partie de vos données d'écoute. Un classement de fin d'année,
