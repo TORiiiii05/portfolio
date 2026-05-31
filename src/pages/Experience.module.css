@@ -1,0 +1,236 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding: 4rem 2rem 2.5rem;
+  border-bottom: 2px solid #000;
+}
+
+.sectionNum {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.heroSub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  opacity: 0.65;
+  max-width: 560px;
+}
+
+/* ── EXPERIENCES ── */
+.expList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.expItem {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  border-bottom: 2px solid #000;
+}
+
+.expHighlight {
+  background: #f8f8f8;
+}
+
+.expSide {
+  padding: 2rem 1.25rem;
+  border-right: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.expNum {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.expType {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  writing-mode: vertical-rl;
+}
+
+.expBody {
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.expHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.expCompany {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+
+.expMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.expRole {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.expPeriod {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+
+.missionList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.missionItem {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.missionDash {
+  font-family: 'IBM Plex Mono', monospace;
+  opacity: 0.4;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.missionText {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  opacity: 0.7;
+}
+
+.expFooter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stackList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.stackTag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  border: 2px solid #000;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.06em;
+}
+
+/* ── CV SECTION ── */
+.cvSection {
+  padding: 2.5rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: none;
+}
+
+.cvLabel {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.cvText {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  opacity: 0.65;
+  line-height: 1.6;
+}
+
+.cvBtn {
+  display: inline-block;
+  border: 2px solid #000;
+  padding: 0.65rem 1.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.12s, color 0.12s;
+  align-self: flex-start;
+}
+
+.cvBtn:hover {
+  background: #000;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .hero, .expBody, .cvSection {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .expItem {
+    grid-template-columns: 1fr;
+  }
+
+  .expSide {
+    border-right: none;
+    border-bottom: 2px solid #000;
+    flex-direction: row;
+    padding: 1rem 1.25rem;
+    justify-content: flex-start;
+  }
+
+  .expType {
+    writing-mode: horizontal-tb;
+  }
+
+  .expBody {
+    padding: 1.5rem 1.25rem;
+  }
+}

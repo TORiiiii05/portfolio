@@ -1,0 +1,213 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding: 4rem 2rem 2.5rem;
+  border-bottom: 2px solid #000;
+}
+
+.sectionNum {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.heroSub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  opacity: 0.65;
+  max-width: 560px;
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+}
+
+.blockLabel {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 1.25rem;
+}
+
+/* ── FORM ── */
+.formSection {
+  padding: 2.5rem 2rem 4rem;
+  border-right: 2px solid #000;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 560px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  opacity: 0.5;
+}
+
+.input,
+.textarea {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  background: #faf7f2;
+  color: #000;
+  border: 2px solid #000;
+  padding: 0.65rem 0.85rem;
+  outline: none;
+  transition: background 0.1s;
+  resize: vertical;
+  width: 100%;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  opacity: 0.35;
+}
+
+.input:focus,
+.textarea:focus {
+  background: #f5f5f5;
+}
+
+.submitBtn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 0.75rem 2rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.12s, color 0.12s;
+}
+
+.submitBtn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.sentMsg {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  border: 2px solid #000;
+  padding: 1.5rem;
+  max-width: 480px;
+}
+
+/* ── ASIDE ── */
+.aside {
+  padding: 2.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.linksBlock,
+.availBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 2px solid #000;
+}
+
+.linkItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 2px solid #000;
+}
+
+.linkItem:last-child {
+  border-bottom: none;
+}
+
+.linkLabel {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.linkValue {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.1s;
+  word-break: break-all;
+}
+
+.linkValue:hover {
+  border-color: #000;
+}
+
+.availText {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.75;
+  opacity: 0.65;
+  border-left: 3px solid #000;
+  padding-left: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formSection {
+    border-right: none;
+    border-bottom: 2px solid #000;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero, .formSection, .aside {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
