@@ -1,4 +1,3 @@
-import Blob from '../components/Blob'
 import styles from './Experience.module.css'
 
 const experiences = [
@@ -41,9 +40,6 @@ const experiences = [
 export default function Experience() {
   return (
     <div className={styles.page}>
-      <Blob num={2} size={260} style={{ top: '46%', right: '-50px' }} />
-      <Blob num={4} size={200} style={{ bottom: '-30px', left: '-30px' }} />
-
       <section className={styles.hero}>
         <p className={styles.sectionNum}>004 —</p>
         <h1 className={styles.title}>Expériences</h1>

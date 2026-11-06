@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Blob from '../components/Blob'
 import styles from './Contact.module.css'
 
 const links = [
@@ -28,8 +27,6 @@ export default function Contact() {
 
   return (
     <div className={styles.page}>
-      <Blob num={5} size={300} style={{ top: '-60px', right: '-60px' }} />
-
       <section className={styles.hero}>
         <p className={styles.sectionNum}>005 —</p>
         <h1 className={styles.title}>Contact</h1>

@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom'
 import Nav from './Nav'
+import ScrollToTop from './ScrollToTop'
 import styles from './Layout.module.css'
 
 export default function Layout() {
   return (
     <div className={styles.root}>
+      <ScrollToTop />
       <div className={styles.sidebar} aria-hidden="true" />
       <div className={styles.inner}>
         <Nav />

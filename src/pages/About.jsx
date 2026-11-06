@@ -1,4 +1,3 @@
-import Blob from '../components/Blob'
 import styles from './About.module.css'
 
 const skills = [
@@ -38,9 +37,6 @@ const interests = [
 export default function About() {
   return (
     <div className={styles.page}>
-      <Blob num={3} size={300} style={{ top: '-60px', right: '-60px' }} />
-      <Blob num={2} size={200} style={{ top: '52%', left: '-40px' }} />
-
       <section className={styles.hero}>
         <p className={styles.sectionNum}>001 —</p>
         <h1 className={styles.title}>À propos</h1>

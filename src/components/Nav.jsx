@@ -1,18 +1,23 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, matchPath, useLocation } from 'react-router-dom'
 import { useState } from 'react'
+import { pageDuProjet, trouverProjetDetaille } from '../data/projects'
 import styles from './Nav.module.css'
 
 const links = [
-  { to: '/', label: 'Accueil', short: '00' },
-  { to: '/about', label: 'À propos', short: '01' },
-  { to: '/projects/iut', label: 'Projets IUT', short: '02' },
-  { to: '/projects/music', label: 'Site musical', short: '03' },
-  { to: '/experience', label: 'Expériences', short: '04' },
-  { to: '/contact', label: 'Contact', short: '05' },
+  { to: '/', label: 'ACCUEIL', short: '00' },
+  { to: '/about', label: 'À PROPOS', short: '01' },
+  { to: '/web', label: 'WEB & COM', short: '02' },
+  { to: '/data', label: 'DATA', short: '03' },
+  { to: '/experience', label: 'EXPÉRIENCES', short: '04' },
+  { to: '/contact', label: 'CONTACT', short: '05' },
 ]
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+  const routeProjet = matchPath('/projets/:slug', location.pathname)
+  const projet = routeProjet && trouverProjetDetaille(routeProjet.params.slug)
+  const pageActive = projet && pageDuProjet(projet, location.state?.from)
 
   return (
     <header className={styles.header}>
@@ -39,7 +44,7 @@ export default function Nav() {
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.linkActive : ''}`
+              `${styles.link} ${isActive || to === pageActive ? styles.linkActive : ''}`
             }
             onClick={() => setOpen(false)}
           >

@@ -10,6 +10,9 @@
 .hero {
   padding: 4rem 2rem 2.5rem;
   border-bottom: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .sectionNum {
@@ -37,7 +40,7 @@
   max-width: 560px;
 }
 
-/* ── PROJECT LIST (IUT page) ── */
+/* ── LISTE DE PROJETS ── */
 .projectList {
   list-style: none;
   display: flex;
@@ -50,17 +53,12 @@
   border-bottom: 2px solid #000;
 }
 
-.projectHighlight {
-  background: #f8f8f8;
-}
-
 .projectMeta {
   padding: 2rem 1.25rem;
   border-right: 2px solid #000;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .projectNum {
@@ -70,19 +68,12 @@
   letter-spacing: 0.04em;
 }
 
-.projectYear {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
-  opacity: 0.45;
-  writing-mode: vertical-rl;
-  letter-spacing: 0.1em;
-}
-
 .projectBody {
-  padding: 2rem 2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
 }
 
 .projectHeader {
@@ -108,7 +99,6 @@
   border: 2px solid #000;
   padding: 0.15rem 0.5rem;
   opacity: 0.6;
-  white-space: nowrap;
 }
 
 .projectDesc {
@@ -141,153 +131,80 @@
   letter-spacing: 0.06em;
 }
 
-.projectLinks {
-  display: flex;
-  gap: 0.75rem;
+.cta {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 0.65rem 1.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  transition: background 0.12s, color 0.12s;
 }
 
-.projectLink {
+.cta:hover {
+  background: #faf7f2;
+  color: #000;
+}
+
+/* ── PAGE DÉTAILLÉE ── */
+.backLink {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   border-bottom: 2px solid #000;
   padding-bottom: 0.1rem;
+  margin-bottom: 1.5rem;
   transition: opacity 0.1s;
 }
 
-.projectLink:hover {
+.backLink:hover {
   opacity: 0.5;
 }
 
-/* ── FEATURED BLOCK (Music page) ── */
-.featuredBlock {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  border-bottom: 2px solid #000;
-}
-
-.featuredMeta {
-  padding: 2.5rem 1.25rem;
-  border-right: 2px solid #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.featuredLabel {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.5;
-  writing-mode: vertical-rl;
-}
-
-.featuredYear {
+.detailTitle {
   font-family: 'Anton', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.04em;
-}
-
-.featuredContent {
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.featuredTitle {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
-.featuredTagline {
+.hero .heroSub + .stackList,
+.hero .heroSub + .cta,
+.hero .stackList + .cta {
+  margin-top: 1rem;
+}
+
+.detailSection {
+  padding: 2.5rem 2rem;
+  border-bottom: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detailText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.detailText:empty {
+  display: none;
+}
+
+.tagline {
   font-family: 'Space Mono', monospace;
   font-size: 0.9rem;
   line-height: 1.7;
   border-left: 3px solid #000;
   padding-left: 1rem;
   opacity: 0.75;
-  max-width: 560px;
-}
-
-.featuredDesc {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  max-width: 680px;
-}
-
-.featuredDesc p {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  line-height: 1.85;
-  opacity: 0.7;
-}
-
-.featuredStack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.stackLabel {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  opacity: 0.4;
-}
-
-.featuredActions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.featuredCta {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: 2px solid #000;
-  padding: 0.65rem 1.5rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: background 0.12s, color 0.12s;
-}
-
-.featuredCta:hover {
-  background: #faf7f2;
-  color: #000;
-}
-
-.featuredCtaGhost {
-  display: inline-block;
-  background: transparent;
-  color: #000;
-  border: 2px solid #000;
-  padding: 0.65rem 1.5rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: background 0.12s, color 0.12s;
-}
-
-.featuredCtaGhost:hover {
-  background: #000;
-  color: #fff;
-}
-
-/* ── CONTEXT SECTION ── */
-.contextSection {
-  padding: 2.5rem 2rem 4rem;
 }
 
 .sectionTitle {
@@ -295,8 +212,20 @@
   font-size: clamp(1.8rem, 4vw, 3rem);
   text-transform: uppercase;
   line-height: 1;
-  margin-bottom: 2rem;
   letter-spacing: 0.03em;
+}
+
+.detailList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.detailListItem {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 0.5rem;
 }
 
 .contextGrid {
@@ -320,6 +249,7 @@
 .contextBlockLabel {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem;
+  font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   opacity: 0.45;
@@ -330,6 +260,41 @@
   font-size: 0.78rem;
   line-height: 1.8;
   opacity: 0.7;
+}
+
+.gallery {
+  padding: 2.5rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.figure img {
+  width: 100%;
+  border: 2px solid #000;
+}
+
+.figcaption {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+/* ── 404 ── */
+.notFound {
+  padding: 5rem 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.notFoundTitle {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(7rem, 22vw, 16rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 900px) {
@@ -345,26 +310,13 @@
   .contextBlock:last-child {
     border-bottom: none;
   }
-
-  .featuredBlock {
-    grid-template-columns: 1fr;
-  }
-
-  .featuredMeta {
-    border-right: none;
-    border-bottom: 2px solid #000;
-    flex-direction: row;
-    padding: 1rem 2rem;
-    writing-mode: horizontal-tb;
-  }
-
-  .featuredLabel {
-    writing-mode: horizontal-tb;
-  }
 }
 
 @media (max-width: 640px) {
-  .hero, .featuredContent, .contextSection {
+  .hero,
+  .detailSection,
+  .gallery,
+  .notFound {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
@@ -379,10 +331,6 @@
     flex-direction: row;
     padding: 1rem 1.25rem;
     justify-content: flex-start;
-  }
-
-  .projectYear {
-    writing-mode: horizontal-tb;
   }
 
   .projectBody {
