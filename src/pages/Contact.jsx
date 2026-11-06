@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Doodle from '../components/Doodle'
 import styles from './Contact.module.css'
 
 const links = [
@@ -28,7 +29,14 @@ export default function Contact() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <p className={styles.sectionNum}>005 —</p>
+        <Doodle
+          numero={4}
+          taille={110}
+          top="48px"
+          right="8%"
+          mobile={{ taille: 72, top: '42px', right: '16px' }}
+        />
+        <p className={styles.sectionNum}>05 —</p>
         <h1 className={styles.title}>Contact</h1>
         <p className={styles.heroSub}>
           Un projet, une opportunité, une question — je suis disponible.
@@ -108,7 +116,7 @@ export default function Contact() {
           <div className={styles.availBlock}>
             <p className={styles.blockLabel}>DISPONIBILITÉ</p>
             <p className={styles.availText}>
-              Disponible pour échanger autour d'un projet, d'un stage ou d'une alternance.
+              En recherche d'un stage de 3 mois en web et communication, à partir d'avril 2027.
             </p>
           </div>
         </aside>

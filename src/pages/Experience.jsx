@@ -1,3 +1,4 @@
+import Doodle from '../components/Doodle'
 import styles from './Experience.module.css'
 
 const experiences = [
@@ -9,6 +10,7 @@ const experiences = [
     location: 'Rennes',
     type: 'Stage',
     context: 'Stage de troisième année au sein de l\'équipe Data Analytics Pro PME d\'Orange France, travaillant sur l\'ensemble des problématiques data du marché des professionnels et PME. Encadrement par Maël Lanoë, data scientist avec plus de 20 ans d\'expérience.',
+    enClair: 'mon rôle était d\'aider les équipes commerciales à savoir quels prospects et quels clients contacter en priorité. À partir des données d\'environ 1,5 million de clients professionnels, j\'ai construit des outils de prédiction qui estiment le potentiel d\'une entreprise et ses chances de devenir cliente. J\'ai travaillé en autonomie, avec un point quotidien, au sein d\'une équipe d\'une dizaine de personnes réparties entre Rennes et Paris.',
     missions: [
       'Construction d\'une usine à score marketing : conception et entraînement de trois indicateurs de machine learning destinés aux équipes commerciales — estimation du chiffre d\'affaires potentiel d\'un prospect, score de probabilité de conversion, et prévision du chiffre d\'affaires futur sur 6 mois.',
       'Modélisation sur données à grande échelle : travail sur des jeux de données atteignant 10 millions de lignes et près de 1 000 variables. Choix et justification des modèles (forêts aléatoires), feature engineering élaboré (agrégats temporels, variables de dynamique, indicateurs de stabilité).',
@@ -26,6 +28,7 @@ const experiences = [
     location: 'Ottawa',
     type: 'Stage',
     context: 'Stage de deuxième année au sein de la Division des Méthodes d\'Intégration Statistique (DMIS), dans le cadre d\'un partenariat avec l\'IUT de Vannes. Environnement bilingue, travail sur des données confidentielles réelles dans un cadre sécurisé strict.',
+    enClair: 'Statistique Canada produit les statistiques officielles du pays. Mon équipe relie entre elles des bases de données qui n\'ont pas d\'identifiant commun, par exemple pour retrouver une même personne dans deux fichiers à partir de son nom et de sa date de naissance, afin d\'enrichir les enquêtes nationales. Trois mois à Ottawa, en français et en anglais.',
     missions: [
       'Montée en compétence sur le couplage probabiliste : découverte complète de la méthode de Fellegi et Sunter (1969), formation via le G-Link User Guide et suivi d\'un cours structuré de 10 séances animé par les méthodologistes de l\'unité.',
       'Couplage probabiliste sur le Registre d\'Assurance Sociale (RAS) : participation à un projet réel de mise à jour d\'une base interne. Prétraitement des données, création des pseudo-clés, validation de paires ambiguës via requêtes SQL.',
@@ -41,7 +44,14 @@ export default function Experience() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <p className={styles.sectionNum}>004 —</p>
+        <Doodle
+          numero={16}
+          taille={110}
+          top="40px"
+          right="8%"
+          mobile={{ taille: 60, top: '14px', right: '16px' }}
+        />
+        <p className={styles.sectionNum}>04 —</p>
         <h1 className={styles.title}>Expériences</h1>
         <p className={styles.heroSub}>
           Deux stages en environnement professionnel —
@@ -65,7 +75,12 @@ export default function Experience() {
                 </div>
               </div>
 
-              <p className={styles.missionText}>{exp.context}</p>
+              <div className={styles.contextText}>
+                <p className={styles.missionText}>{exp.context}</p>
+                <p className={styles.missionText}>
+                  <strong>En clair :</strong> {exp.enClair}
+                </p>
+              </div>
 
               <ul className={styles.missionList}>
                 {exp.missions.map((m, i) => (

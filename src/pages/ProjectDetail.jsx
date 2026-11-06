@@ -1,7 +1,21 @@
 import { Link, useLocation, useParams } from 'react-router-dom'
+import Doodle from '../components/Doodle'
 import { pageDuProjet, trouverProjetDetaille } from '../data/projects'
 import NotFound from './NotFound'
 import styles from './Projects.module.css'
+
+const doodles = {
+  'lelievre-paysage': 13,
+  statimusic: 12,
+  'landing-pages': 2,
+  communication: 8,
+  'affiche-soleil': 19,
+  'epsm-charcot': 6,
+  'joueurs-fifa': 15,
+  'accidents-route': 5,
+  'sondage-quebec': 11,
+  'meteo-australie': 9,
+}
 
 const images = import.meta.glob('../assets/projets/*/*.{webp,png,jpg,jpeg}', {
   eager: true,
@@ -23,7 +37,25 @@ function Paragraphes({ textes = [] }) {
 }
 
 function Section({ section }) {
-  const { titre, paragraphes, liste, colonnes, variante } = section
+  const { titre, sousTitre, paragraphes, liste, colonnes, ligne, noteItalique, variante } = section
+
+  if (ligne) {
+    return (
+      <section className={styles.detailSection}>
+        <div
+          className={styles.ligneGrid}
+          style={{ '--colonnes': ligne.length }}
+        >
+          {ligne.map((bloc) => (
+            <div key={bloc.titre} className={styles.ligneBlock}>
+              <h2 className={styles.ligneTitle}>{bloc.titre}</h2>
+              <Paragraphes textes={bloc.paragraphes} />
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   if (variante === 'accroche') {
     return (
@@ -38,6 +70,7 @@ function Section({ section }) {
   return (
     <section className={styles.detailSection}>
       {titre && <h2 className={styles.sectionTitle}>{titre}</h2>}
+      {sousTitre && <p className={styles.sectionSub}>{sousTitre}</p>}
       <div className={styles.detailText}>
         <Paragraphes textes={paragraphes} />
       </div>
@@ -65,6 +98,7 @@ function Section({ section }) {
           ))}
         </div>
       )}
+      {noteItalique && <p className={styles.detailNote}>{noteItalique}</p>}
     </section>
   )
 }
@@ -78,10 +112,19 @@ export default function ProjectDetail() {
 
   const { titre, contexte, tags, lienExterne, sections, legendes } = projet
   const captures = capturesDuProjet(slug)
+  // Le doodle 05 est plus haut que les autres : on le remonte pour qu'il ne touche pas le titre.
+  const doodleTop = slug === 'accidents-route' ? '30px' : '42px'
 
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
+        <Doodle
+          numero={doodles[slug]}
+          taille={60}
+          top={doodleTop}
+          right="2rem"
+          mobile={{ taille: 60, top: doodleTop, right: '16px' }}
+        />
         <Link to={pageDuProjet(projet, location.state?.from)} className={styles.backLink}>
           ← RETOUR
         </Link>

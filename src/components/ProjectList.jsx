@@ -1,10 +1,11 @@
 import ProjectCard from './ProjectCard'
 import styles from '../pages/Projects.module.css'
 
-export default function ProjectList({ numero, titre, intro, projets, from }) {
+export default function ProjectList({ numero, titre, intro, projets, from, children }) {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
+        {children}
         <p className={styles.sectionNum}>{numero}</p>
         <h1 className={styles.title}>{titre}</h1>
         {intro && <p className={styles.heroSub}>{intro}</p>}

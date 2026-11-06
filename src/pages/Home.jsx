@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Doodle from '../components/Doodle'
 import styles from './Home.module.css'
 
 const sections = [
@@ -12,13 +13,22 @@ const sections = [
 export default function Home() {
   return (
     <div className={styles.page}>
+      <Doodle
+        numero={17}
+        taille={140}
+        top="130px"
+        left="calc(5rem + 3.7 * clamp(5rem, 14vw, 11rem))"
+        mobile={{ taille: 72, top: '8px', right: '30px' }}
+      />
+      <Doodle numero={9} taille={90} top="44px" right="8%" />
+      <Doodle numero={18} taille={72} top="480px" right="14%" />
+
       <section className={styles.hero}>
         <p className={styles.heroLabel}>PORTFOLIO — 2026</p>
         <h1 className={styles.heroName}>Jules<br />Del Frate</h1>
-        <p className={styles.heroTitle}>Étudiant en Science des Données<br />— Data · IA · Web</p>
+        <p className={styles.heroTitle}>Étudiant web & communication<br />— Web · Com · Data</p>
         <p className={styles.heroCatch}>
-          Étudiant en science des données. Curieux, créatif,
-          et toujours en train de construire quelque chose.
+          Du design au code. Curieux, créatif, et toujours en train de construire quelque chose.
         </p>
         <Link to="/about" className={styles.heroCta}>
           <span>Découvrir →</span>

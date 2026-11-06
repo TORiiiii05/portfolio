@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styles from '../pages/Projects.module.css'
 
 export default function ProjectCard({ projet, numero, from }) {
-  const { slug, titre, contexte, resume, tags, aDetail } = projet
+  const { slug, titre, contexte, resume, tags, aDetail, mentionData } = projet
 
   return (
     <li className={styles.projectItem}>
@@ -14,6 +14,9 @@ export default function ProjectCard({ projet, numero, from }) {
           <h2 className={styles.projectTitle}>{titre}</h2>
           {contexte && <span className={styles.projectType}>{contexte}</span>}
         </div>
+        {from === '/data' && mentionData && (
+          <p className={styles.projectMention}>{mentionData}</p>
+        )}
         {resume && <p className={styles.projectDesc}>{resume}</p>}
         {(tags.length > 0 || aDetail) && (
           <div className={styles.projectFooter}>
