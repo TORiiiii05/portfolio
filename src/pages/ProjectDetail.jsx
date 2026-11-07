@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Doodle from '../components/Doodle'
+import LienExterne from '../components/LienExterne'
+import usePageMeta from '../hooks/usePageMeta'
 import { pageDuProjet, trouverProjetDetaille } from '../data/projects'
 import NotFound from './NotFound'
 import styles from './Projects.module.css'
@@ -103,15 +106,38 @@ function Section({ section }) {
   )
 }
 
+// Réserve la place de l'image avant son chargement, puis adopte ses vraies proportions.
+function Capture({ src, alt, prioritaire }) {
+  const [proportions, setProportions] = useState('16 / 10')
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading={prioritaire ? undefined : 'lazy'}
+      decoding={prioritaire ? undefined : 'async'}
+      style={{ aspectRatio: proportions }}
+      onLoad={(e) => setProportions(`${e.target.naturalWidth} / ${e.target.naturalHeight}`)}
+    />
+  )
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams()
-  const location = useLocation()
   const projet = trouverProjetDetaille(slug)
 
   if (!projet) return <NotFound />
 
-  const { titre, contexte, tags, lienExterne, sections, legendes } = projet
+  return <Projet key={slug} projet={projet} />
+}
+
+function Projet({ projet }) {
+  const location = useLocation()
+  const { slug, titre, contexte, tags, resume, lienExterne, sections, legendes } = projet
   const captures = capturesDuProjet(slug)
+
+  usePageMeta(titre, resume)
+
   // Le doodle 05 est plus haut que les autres : on le remonte pour qu'il ne touche pas le titre.
   const doodleTop = slug === 'accidents-route' ? '30px' : '42px'
 
@@ -138,14 +164,9 @@ export default function ProjectDetail() {
           </ul>
         )}
         {lienExterne && (
-          <a
-            href={lienExterne.url}
-            className={styles.cta}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {lienExterne.label} →
-          </a>
+          <LienExterne href={lienExterne.url} className={styles.cta}>
+            {lienExterne.label}
+          </LienExterne>
         )}
       </section>
 
@@ -155,9 +176,13 @@ export default function ProjectDetail() {
 
       {captures.length > 0 && (
         <section className={styles.gallery}>
-          {captures.map(({ nom, src }) => (
+          {captures.map(({ nom, src }, index) => (
             <figure key={nom} className={styles.figure}>
-              <img src={src} alt={legendes[nom] ?? `Capture du projet ${titre}`} />
+              <Capture
+                src={src}
+                alt={legendes[nom] ?? `Capture du projet ${titre}`}
+                prioritaire={index === 0}
+              />
               {legendes[nom] && (
                 <figcaption className={styles.figcaption}>{legendes[nom]}</figcaption>
               )}

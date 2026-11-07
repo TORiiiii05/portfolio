@@ -1,5 +1,5 @@
-import { NavLink, matchPath, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, matchPath, useLocation } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
 import { pageDuProjet, trouverProjetDetaille } from '../data/projects'
 import styles from './Nav.module.css'
 
@@ -14,43 +14,64 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const location = useLocation()
-  const routeProjet = matchPath('/projets/:slug', location.pathname)
+  const burger = useRef(null)
+  const { pathname, state } = useLocation()
+  const routeProjet = matchPath('/projets/:slug', pathname)
   const projet = routeProjet && trouverProjetDetaille(routeProjet.params.slug)
-  const pageActive = projet && pageDuProjet(projet, location.state?.from)
+  const pageProjet = projet && pageDuProjet(projet, state?.from)
+  const pageActive = pageProjet || pathname.replace(/(.)\/$/, '$1')
+
+  useEffect(() => {
+    if (!open) return undefined
+
+    function fermerAvecEchap(e) {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        burger.current.focus()
+      }
+    }
+
+    document.addEventListener('keydown', fermerAvecEchap)
+    return () => document.removeEventListener('keydown', fermerAvecEchap)
+  }, [open])
 
   return (
     <header className={styles.header}>
-      <NavLink to="/" className={styles.brand} onClick={() => setOpen(false)}>
+      <Link to="/" className={styles.brand} onClick={() => setOpen(false)}>
         <span className={styles.brandName}>JDF</span>
         <span className={styles.brandSub}>Jules Del Frate</span>
-      </NavLink>
+      </Link>
 
       <button
+        ref={burger}
+        type="button"
         className={styles.burger}
         onClick={() => setOpen((o) => !o)}
         aria-label="Menu"
         aria-expanded={open}
+        aria-controls="menu-principal"
       >
         <span className={open ? styles.burgerLineOpen : styles.burgerLine} />
         <span className={open ? styles.burgerLineMidOpen : styles.burgerLine} />
         <span className={open ? styles.burgerLineOpen : styles.burgerLine} />
       </button>
 
-      <nav className={`${styles.nav} ${open ? styles.navOpen : ''}`}>
+      <nav
+        id="menu-principal"
+        aria-label="Navigation principale"
+        className={`${styles.nav} ${open ? styles.navOpen : ''}`}
+      >
         {links.map(({ to, label, short }) => (
-          <NavLink
+          <Link
             key={to}
             to={to}
-            end={to === '/'}
-            className={({ isActive }) =>
-              `${styles.link} ${isActive || to === pageActive ? styles.linkActive : ''}`
-            }
+            aria-current={to === pageActive ? 'page' : undefined}
+            className={`${styles.link} ${to === pageActive ? styles.linkActive : ''}`}
             onClick={() => setOpen(false)}
           >
             <span className={styles.linkNum}>{short}</span>
             <span className={styles.linkLabel}>{label}</span>
-          </NavLink>
+          </Link>
         ))}
       </nav>
     </header>

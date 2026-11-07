@@ -52,6 +52,51 @@ img {
   max-width: 100%;
 }
 
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lien-texte {
+  border-bottom: 2px solid #000;
+}
+
+.lien-texte:hover {
+  background: #000;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  /* Les images sont exclues : les doodles gardent leur léger rebond au clic. */
+  *:not(img),
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+}
+
 ::selection {
   background-color: var(--black);
   color: var(--white);

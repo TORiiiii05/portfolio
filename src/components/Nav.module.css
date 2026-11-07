@@ -30,7 +30,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 0.6;
 }
 
 /* Desktop nav */
@@ -67,7 +67,7 @@
 
 .linkNum {
   font-size: 0.55rem;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .linkActive .linkNum {
@@ -118,7 +118,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .header {
     padding: 1rem 1.25rem;
     flex-wrap: wrap;

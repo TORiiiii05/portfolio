@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Doodle from '../components/Doodle'
+import usePageMeta from '../hooks/usePageMeta'
 import styles from './Home.module.css'
 
 const sections = [
@@ -11,6 +12,8 @@ const sections = [
 ]
 
 export default function Home() {
+  usePageMeta(null, 'Étudiant web & communication — Web · Com · Data. Du design au code.')
+
   return (
     <div className={styles.page}>
       <Doodle

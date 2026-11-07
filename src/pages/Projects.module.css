@@ -20,7 +20,7 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.2em;
-  opacity: 0.4;
+  opacity: 0.6;
   margin-bottom: 0.5rem;
 }
 
@@ -167,7 +167,7 @@
 }
 
 .backLink:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .detailTitle {
@@ -313,7 +313,7 @@
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.45;
+  opacity: 0.6;
 }
 
 .contextText {

@@ -16,7 +16,7 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.2em;
-  opacity: 0.4;
+  opacity: 0.6;
   margin-bottom: 0.5rem;
 }
 
@@ -47,7 +47,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.4;
+  opacity: 0.6;
   margin-bottom: 1.25rem;
 }
 
@@ -74,7 +74,7 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.18em;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .input,
@@ -85,7 +85,6 @@
   color: #000;
   border: 2px solid #000;
   padding: 0.65rem 0.85rem;
-  outline: none;
   transition: background 0.1s;
   resize: vertical;
   width: 100%;
@@ -93,7 +92,8 @@
 
 .input::placeholder,
 .textarea::placeholder {
-  opacity: 0.35;
+  color: #000;
+  opacity: 0.6;
 }
 
 .input:focus,
@@ -116,9 +116,42 @@
   transition: background 0.12s, color 0.12s;
 }
 
-.submitBtn:hover {
+.submitBtn:hover:not(:disabled) {
   background: #fff;
   color: #000;
+}
+
+.submitBtn:disabled {
+  cursor: not-allowed;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  accent-color: #000;
+  cursor: pointer;
+}
+
+.consentText {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.consentText label {
+  cursor: pointer;
+}
+
+.errorMsg {
+  margin-bottom: 1.5rem;
 }
 
 .sentMsg {
@@ -169,7 +202,7 @@
   font-size: 0.55rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.45;
+  opacity: 0.6;
 }
 
 .linkValue {

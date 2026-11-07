@@ -1,7 +1,10 @@
 import ProjectCard from './ProjectCard'
+import usePageMeta from '../hooks/usePageMeta'
 import styles from '../pages/Projects.module.css'
 
 export default function ProjectList({ numero, titre, intro, projets, from, children }) {
+  usePageMeta(titre, intro)
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>

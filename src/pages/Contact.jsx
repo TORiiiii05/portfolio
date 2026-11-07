@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Doodle from '../components/Doodle'
+import LienExterne from '../components/LienExterne'
+import usePageMeta from '../hooks/usePageMeta'
 import styles from './Contact.module.css'
 
 const links = [
@@ -9,8 +12,11 @@ const links = [
 ]
 
 export default function Contact() {
-  const [sent, setSent] = useState(false)
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  usePageMeta('Contact', 'Un projet, une opportunité, une question — je suis disponible.')
+
+  // 'attente' | 'envoi' | 'succes' | 'erreur'
+  const [etat, setEtat] = useState('attente')
+  const [form, setForm] = useState({ name: '', email: '', message: '', _gotcha: '' })
 
   function handleChange(e) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -18,12 +24,18 @@ export default function Contact() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const res = await fetch('https://formspree.io/f/mpqnenon', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
-    })
-    if (res.ok) setSent(true)
+    if (etat === 'envoi') return
+    setEtat('envoi')
+    try {
+      const res = await fetch('https://formspree.io/f/mpqnenon', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      setEtat(res.ok ? 'succes' : 'erreur')
+    } catch {
+      setEtat('erreur')
+    }
   }
 
   return (
@@ -46,12 +58,32 @@ export default function Contact() {
       <div className={styles.grid}>
         <section className={styles.formSection}>
           <p className={styles.blockLabel}>ENVOYER UN MESSAGE</p>
-          {sent ? (
-            <div className={styles.sentMsg}>
-              <p>Message envoyé — je vous répondrai rapidement.</p>
-            </div>
-          ) : (
+          <div aria-live="polite">
+            {etat === 'succes' && (
+              <div className={styles.sentMsg}>
+                <p>Message envoyé — je vous répondrai rapidement.</p>
+              </div>
+            )}
+            {etat === 'erreur' && (
+              <div className={`${styles.sentMsg} ${styles.errorMsg}`}>
+                <p>
+                  L'envoi a échoué. Réessayez ou écrivez-moi directement à{' '}
+                  <a href="mailto:jules.delfrate@gmail.com" className="lien-texte">jules.delfrate@gmail.com</a>.
+                </p>
+              </div>
+            )}
+          </div>
+          {etat !== 'succes' && (
             <form className={styles.form} onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="_gotcha"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                value={form._gotcha}
+                onChange={handleChange}
+              />
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="name">NOM</label>
                 <input
@@ -59,6 +91,7 @@ export default function Contact() {
                   name="name"
                   type="text"
                   required
+                  autoComplete="name"
                   className={styles.input}
                   placeholder="[Votre nom]"
                   value={form.name}
@@ -72,6 +105,7 @@ export default function Contact() {
                   name="email"
                   type="email"
                   required
+                  autoComplete="email"
                   className={styles.input}
                   placeholder="[votre@email.com]"
                   value={form.email}
@@ -91,8 +125,17 @@ export default function Contact() {
                   onChange={handleChange}
                 />
               </div>
-              <button type="submit" className={styles.submitBtn}>
-                Envoyer →
+              <div className={styles.consent}>
+                <input id="consentement" type="checkbox" required className={styles.checkbox} />
+                <p className={styles.consentText}>
+                  <label htmlFor="consentement">
+                    J'accepte que mes données soient utilisées pour répondre à ma demande.
+                  </label>{' '}
+                  <Link to="/confidentialite" className="lien-texte">Politique de confidentialité</Link>
+                </p>
+              </div>
+              <button type="submit" className={styles.submitBtn} disabled={etat === 'envoi'}>
+                {etat === 'envoi' ? 'ENVOI…' : 'Envoyer →'}
               </button>
             </form>
           )}
@@ -105,9 +148,11 @@ export default function Contact() {
               {links.map(({ label, value, href }) => (
                 <li key={label} className={styles.linkItem}>
                   <span className={styles.linkLabel}>{label}</span>
-                  <a href={href} className={styles.linkValue} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
-                    {value} →
-                  </a>
+                  {href.startsWith('http') ? (
+                    <LienExterne href={href} className={styles.linkValue}>{value}</LienExterne>
+                  ) : (
+                    <a href={href} className={styles.linkValue}>{value} →</a>
+                  )}
                 </li>
               ))}
             </ul>

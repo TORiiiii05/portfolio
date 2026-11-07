@@ -1,4 +1,5 @@
 import Doodle from '../components/Doodle'
+import usePageMeta from '../hooks/usePageMeta'
 import styles from './About.module.css'
 
 const skills = [
@@ -55,6 +56,8 @@ const interests = [
 ]
 
 export default function About() {
+  usePageMeta('À propos', "Parcours, formation, compétences et centres d'intérêt de Jules Del Frate, étudiant web & communication.")
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>

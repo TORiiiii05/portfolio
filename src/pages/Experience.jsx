@@ -1,4 +1,5 @@
 import Doodle from '../components/Doodle'
+import usePageMeta from '../hooks/usePageMeta'
 import styles from './Experience.module.css'
 
 const experiences = [
@@ -41,6 +42,8 @@ const experiences = [
 ]
 
 export default function Experience() {
+  usePageMeta('Expériences', "Deux stages en environnement professionnel — en France et à l'international.")
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>

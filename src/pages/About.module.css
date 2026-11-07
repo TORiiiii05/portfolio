@@ -16,7 +16,7 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.2em;
-  opacity: 0.4;
+  opacity: 0.6;
   margin-bottom: 0.5rem;
 }
 
@@ -47,7 +47,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .bioText {
@@ -85,7 +85,7 @@
 
 .infoDot {
   font-family: 'IBM Plex Mono', monospace;
-  opacity: 0.4;
+  opacity: 0.6;
   flex-shrink: 0;
   margin-top: 0.05rem;
 }
@@ -100,7 +100,7 @@
 .infoSub {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
-  opacity: 0.5;
+  opacity: 0.6;
   letter-spacing: 0.05em;
   margin-top: 0.15rem;
 }
@@ -144,7 +144,7 @@
   font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .skillList {

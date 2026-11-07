@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import Doodle from '../components/Doodle'
+import usePageMeta from '../hooks/usePageMeta'
 import styles from './Projects.module.css'
 
 export default function NotFound() {
+  usePageMeta('Page introuvable', "Cette page n'existe pas.")
+
   return (
     <div className={styles.page}>
       <section className={styles.notFound}>
