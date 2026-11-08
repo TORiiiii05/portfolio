@@ -5,6 +5,7 @@ const projets = [
     titre: 'LELIÈVRE PAYSAGE — SITE VITRINE',
     tags: ['WordPress', 'SEO', 'Rédaction web'],
     contexte: 'Projet client · 2026 · Solo',
+    statut: 'MISE EN LIGNE PROCHAINEMENT',
     resume:
       "Refonte complète du site vitrine d'une entreprise de paysagisme : nouvelle identité visuelle, contenus optimisés pour le référencement, formulaire de demande de devis et mise en conformité RGPD.",
     aDetail: true,
@@ -40,7 +41,20 @@ const projets = [
         ],
       },
     ],
-    legendes: {},
+    legendes: {
+      '01_avant':
+        "Avant : le site créé par le client lui-même, sans identité visuelle claire, sans politique de confidentialité et peu adapté à l'accessibilité.",
+      '02_accueil_long':
+        `Après : la nouvelle page d'accueil. Une accroche locale et un bouton "Devis gratuit" dès l'arrivée, les deux grands métiers (entretien, création et aménagement), l'article de Ouest-France et les avis Google pour rassurer, puis les derniers conseils du blog.`,
+      '03_prestations':
+        "La grille des prestations d'entretien en bento box, construite à la main : taille de haies, remise en état, tonte et petit élagage, avec une carte qui renvoie vers les chantiers du client sur Instagram.",
+      '04_prestation_detail':
+        "Une page de prestation : un texte rédigé pour répondre aux questions des clients, deux appels à l'action (réalisations sur Instagram et devis), puis le détail de ce qui est compris.",
+      '05_contact':
+        "La page contact : coordonnées et horaires d'un côté, formulaire Forminator de l'autre, avec consentement et lien vers la politique de confidentialité.",
+      '06_mobile':
+        'La version mobile : le bouton de devis reste en tête de page, à côté du menu.',
+    },
   },
   {
     slug: 'statimusic',
@@ -48,11 +62,16 @@ const projets = [
     titre: 'STATIMUSIC',
     tags: ['Python', 'Flask', 'Supabase'],
     contexte: 'Projet personnel · 2025-2026 · Solo',
+    statut: 'EN RECONSTRUCTION',
     resume:
       "Un site d'analyse d'écoutes musicales : on importe son historique Deezer et on obtient un tableau de bord complet, gratuit et personnel.",
     mentionData: 'À la croisée du web et de la data',
     aDetail: true,
-    lienExterne: { label: 'statimusic.fr', url: 'https://statimusic.fr' },
+    // Masqué pendant la reconstruction. Pour le remettre, remplacer la ligne null par :
+    // lienExterne: { label: 'statimusic.fr', url: 'https://statimusic.fr' },
+    lienExterne: null,
+    noteCaptures:
+      'Statimusic est en cours de reconstruction : les captures de la nouvelle version arriveront avec sa mise en ligne.',
     sections: [
       {
         variante: 'accroche',
@@ -63,7 +82,7 @@ const projets = [
         paragraphes: [
           "Statimusic est né d'une frustration simple : les plateformes de streaming ne donnent accès qu'à une infime partie de vos données d'écoute. Un classement de fin d'année, quelques chiffres — et c'est tout. L'idée était de construire quelque chose de plus complet, de plus personnel, et surtout d'accessible gratuitement à n'importe qui.",
           "Le principe est simple : l'utilisateur importe son historique d'écoute Deezer — un fichier Excel que la plateforme met à disposition sur demande — et le site génère automatiquement un dashboard personnalisé. On y retrouve ses indicateurs clés (heures totales, nombre d'écoutes, artistes découverts), un podium de ses artistes, titres et albums favoris avec leurs photos, et des pages détaillées pour chaque artiste, album ou titre : graphique d'évolution mensuelle, date de première écoute, mois le plus écouté, classement dans l'historique global. Une barre de recherche permet d'explorer l'intégralité de son historique en temps réel.",
-          'Le site est déployé et accessible sur statimusic.fr.',
+          'Le site sera de nouveau accessible sur statimusic.fr après sa reconstruction.',
         ],
       },
       {
@@ -122,11 +141,13 @@ const projets = [
     resume:
       'Deux landing pages pour deux étapes de mon apprentissage du web : une maquette Figma, puis un mini-site codé en HTML et CSS.',
     aDetail: true,
+    plusieursProjets: true,
     lienExterne: null,
     sections: [
       {
         titre: "Vinyles pour seniors libres d'esprit — Figma",
         sousTitre: 'Projet perso · Challenge en 2 heures · 2024',
+        images: 'vinyles',
         paragraphes: [
           "Inspiré par un challenge vu sur YouTube, avant même de commencer mes études de web. Le défi : trouver un sujet et le concevoir en deux heures. J'ai choisi la vente de vinyles avec une cible très précise, des seniors cool et libres d'esprit, pour donner au site une identité visuelle marquée. Wireframe, palette, typographie, puis landing page complète, sur un outil que je n'avais jamais utilisé.",
         ],
@@ -134,12 +155,20 @@ const projets = [
       {
         titre: 'Kinésiologue et magnétiseur — HTML & CSS',
         sousTitre: 'Projet universitaire · Licence Pro · 2026',
+        images: 'kine',
         paragraphes: [
           "Un mini-site pour un kinésiologue et magnétiseur fictif, réalisé pour apprendre l'intégration web. Une landing page qui présente le métier, avec le choix des couleurs, de la typographie et de la mise en page, et une petite FAQ interactive en JavaScript. Il ne manquerait que les pages de prestations et de contact pour en faire un site complet.",
         ],
       },
     ],
-    legendes: {},
+    legendes: {
+      '01_landing_long_vinyles':
+        "La maquette de la page d'accueil, pour une boutique de vinyles qui s'adresse à des seniors libres d'esprit : une palette brune et chaleureuse, des typographies à empattements et des visuels qui jouent l'humour.",
+      '01_landing_long_kine':
+        'Le mini-site complet, intégré en HTML et CSS : présentation des soins, philosophie, symptômes traités, témoignages, portrait, infos pratiques et FAQ.',
+      '02_faq_kine':
+        'La FAQ interactive : les questions s\'ouvrent au clic grâce à un peu de JavaScript.',
+    },
   },
   {
     slug: 'communication',
@@ -150,11 +179,13 @@ const projets = [
     resume:
       "Deux exercices en agence fictive : une stratégie de communication pour un centre d'art contemporain, puis la création d'une marque de pâtes protéinées.",
     aDetail: true,
+    plusieursProjets: true,
     lienExterne: null,
     sections: [
       {
         titre: 'Le Magasin — CNAC Grenoble',
         sousTitre: 'Exercice en agence fictive · Groupe de 3 · Septembre – Octobre 2026',
+        images: 'cnac',
         liste: [
           `Le constat : une image vieillissante, un site difficile à parcourir et une faible visibilité auprès des jeunes, avec l'idée reçue que l'art contemporain n'est "pas pour tout le monde". Pourtant le lieu, son architecture et son histoire méritent d'être connus.`,
           "La veille : une visite du centre et un échange avec l'équipe, l'analyse de sa communication actuelle (site, réseaux, brochures), puis un tour des autres centres d'art, nationaux et régionaux, et des tendances du secteur.",
@@ -168,6 +199,7 @@ const projets = [
       {
         titre: 'Pasteine — pâtes protéinées',
         sousTitre: 'Exercice en agence fictive · Groupe de 5 · Septembre – Octobre 2026',
+        images: 'pasteine',
         liste: [
           "L'analyse de marché : étude d'un produit existant (Barilla Protein+), de ses arguments et de ses limites (prix doublé, format de 400 g).",
           "La veille Instagram : l'analyse de neuf réels sur les pâtes et les pâtes protéinées (accroches, légendes, hashtags, audio), puis une synthèse rédigée seul sur les codes visuels et sémantiques de cette niche, entre gourmandise et nutrition sportive.",
@@ -176,7 +208,16 @@ const projets = [
         ],
       },
     ],
-    legendes: {},
+    legendes: {
+      '01_cible_cnac':
+        "Définition des cibles : le cœur de cible retenu, complété par une cible principale et une cible secondaire, pour savoir à qui parler en priorité et avec quels messages.",
+      '02_personna_cnac':
+        "Le persona tiré du cœur de cible : un visiteur type avec ses habitudes, ses envies et ses freins, qui sert de référence pour choisir le ton et les canaux.",
+      '03_moodboard1_pasteine':
+        "Direction retenue — l'univers de Gaëtan : des bruns chaleureux et gourmands, un beige simple et naturel, une typographie grosse et énergique, et un packaging en carton pratique et rapide, entre sport et nouveauté.",
+      '04_moodboard2_pasteine':
+        "Direction écartée — l'univers de Léa : un vert écologique et apaisant associé à l'orange de l'énergie, une typographie moderne et cosy, pour une version plus végane et inspirée du pilates.",
+    },
   },
   {
     slug: 'affiche-soleil',
@@ -185,7 +226,7 @@ const projets = [
     tags: ['Python', 'Data visualisation', 'Projet perso'],
     contexte: 'Projet personnel · 2026 · Solo',
     resume:
-      "Une affiche imprimable de mes 300 albums les plus écoutés, classés par temps d'écoute et disposés en disque selon leur couleur dominante.",
+      "Une affiche imprimable de mes 339 albums les plus écoutés, classés par temps d'écoute et disposés en disque selon leur couleur dominante.",
     aDetail: true,
     lienExterne: null,
     sections: [
@@ -216,7 +257,7 @@ const projets = [
           {
             titre: 'Le résultat',
             paragraphes: [
-              'Une affiche A2 en 300 dpi, avec environ 300 albums affichés sur plus de 550 pochettes disponibles.',
+              'Une affiche A2 en 300 dpi, avec 339 albums affichés sur plus de 550 pochettes disponibles.',
             ],
           },
           {
@@ -229,7 +270,15 @@ const projets = [
         noteItalique: "Développé avec l'IA comme assistant, sur le même principe que Statimusic.",
       },
     ],
-    legendes: {},
+    capturesDetourees: ['01_affiche'],
+    legendes: {
+      '01_affiche':
+        "L'affiche finale : 339 albums disposés en soleil, du centre clair aux bords sombres, avec le top 10 en grand format.",
+      '02_atelier_pochettes':
+        "L'Atelier, vue Pochettes : à gauche les réglages (nombre d'albums, part maximale de pochettes neutres, couleur retenue pour chaque pochette), au centre l'aperçu en direct, à droite l'inspection d'un album, dont on peut choisir la couleur et la taille à la main.",
+      '03_atelier_couleurs':
+        'Vue Couleurs : chaque pochette est remplacée par sa couleur retenue, pour vérifier le dégradé du disque avant le rendu final en haute définition.',
+    },
   },
   {
     slug: 'epsm-charcot',
@@ -248,8 +297,19 @@ const projets = [
           "Développement d'une application d'aide à la décision pour l'EPSM Charcot, un établissement psychiatrique, dans le cadre d'un projet de six mois en première année de BUT. Les données étant sensibles et anonymisées, l'application se concentrait sur des statistiques globales, des profils types selon l'âge et le genre, ainsi que les durées de séjour — sans jamais exposer de données individuelles. Je me suis principalement occupé du front-end — conception des pages, choix des couleurs, mise en page — une expérience qui a révélé mon goût pour le design d'interface.",
         ],
       },
+      {
+        noteItalique:
+          "Seules les données patient par patient étaient confidentielles. Les données globales sur l'EPSM présentées ici ne le sont pas.",
+      },
     ],
-    legendes: {},
+    legendes: {
+      '01_accueil':
+        "Page d'accueil : un menu latéral pour naviguer entre les trois parties, des onglets Hospitalisation / Ambulatoire, puis les indicateurs clés en cartes et les premiers graphiques (répartition par sexe et par tranche d'âge).",
+      '02_hospitalisation':
+        "Page Hospitalisation : un bloc de filtres (secteur, établissement, unité, période, tranche d'âge), puis le profil des patients, la durée moyenne des séjours et les principaux diagnostics, en données agrégées uniquement.",
+      '03_ambulatoire':
+        "Page Ambulatoire : le suivi par pôle de soins, avec une palette de bleus reprise sur l'ensemble de l'application pour garder une lecture cohérente d'une page à l'autre.",
+    },
   },
   {
     slug: 'joueurs-fifa',
@@ -258,18 +318,23 @@ const projets = [
     tags: ['R Shiny', 'Outil décisionnel'],
     contexte: 'Projet universitaire · 2024-2025 · IUT Vannes',
     resume:
-      'Une application Shiny pour explorer une base de joueurs FIFA et regrouper les profils par ACP et clustering.',
+      "Un outil d'aide au recrutement pour sélectionneurs : filtrer une base de joueurs FIFA et trouver des profils proches d'un joueur donné.",
     aDetail: true,
     lienExterne: null,
     sections: [
       {
         titre: 'Le projet',
         paragraphes: [
-          "Application Shiny d'exploration d'une base de données de joueurs FIFA. L'outil intègre un moteur de recherche permettant de filtrer et visualiser les profils de joueurs, combiné à des méthodes d'analyse multivariée — ACP et clustering — pour regrouper les joueurs selon leurs caractéristiques statistiques et identifier des profils types.",
+          "Une application R Shiny pensée pour un sélectionneur à la recherche de joueurs pour son équipe. Il peut filtrer toute la base selon ses critères (poste, âge, potentiel, notes techniques et physiques, pied préféré, valeur marchande), consulter le profil détaillé d'un joueur, puis obtenir des recommandations : à partir d'un joueur de référence, l'outil propose les profils les plus similaires grâce à une analyse en composantes principales (ACP) et à la méthode des k plus proches voisins.",
         ],
       },
     ],
-    legendes: {},
+    legendes: {
+      '01_filtres':
+        'Page Analyse des données : des filtres sur les notes globales, les compétences, le poste et la valeur du joueur pour réduire la base aux profils recherchés.',
+      '02_profil_joueur':
+        "Page Profil du joueur : recherche par nom, fiche détaillée, carte du joueur et statistiques de jeu comparées. La photo du joueur ne s'affiche plus aujourd'hui, car l'adresse des images utilisée à l'époque a changé depuis.",
+    },
   },
   {
     slug: 'accidents-route',
@@ -285,11 +350,16 @@ const projets = [
       {
         titre: 'Le projet',
         paragraphes: [
-          "Conception d'un tableau de bord interactif Power BI autour des accidents corporels de la circulation en France, à partir des données open data de l'ONISR. Le rapport s'organise en deux pages : une vue générale (âge des usagers, répartition hommes-femmes, taux de mortalité, gravité des accidents, état de la chaussée et vitesse autorisée) et une vue précise (accidents de jour et de nuit, route sèche ou mouillée, luminosité, catégories de véhicules et types d'intersection), avec des filtres pour croiser les critères.",
+          "Conception d'un tableau de bord interactif Power BI autour d'une question : quels sont les effets de la surface de la route (sèche ou mouillée) sur les accidents corporels en France ? Les données open data de l'ONISR sont présentées sur deux pages, avec des filtres pour croiser les critères.",
         ],
       },
     ],
-    legendes: {},
+    legendes: {
+      '01_generale':
+        "Vue générale : âge moyen des accidentés, répartition hommes-femmes et taux de mortalité, puis la part des accidents selon la surface de la route, la vitesse maximale autorisée et la gravité. Filtres par usager, genre, âge et vitesse.",
+      '02_precise':
+        "Vue précise : accidents de jour et de nuit, selon la luminosité, le type d'intersection et la catégorie de véhicule. Filtres par type de trajet et luminosité.",
+    },
   },
   {
     slug: 'sondage-quebec',
@@ -309,14 +379,17 @@ const projets = [
         ],
       },
     ],
-    legendes: {},
+    legendes: {
+      '01_poster_long':
+        "Le poster présenté au 14e Colloque francophone international sur les sondages. Il suit la démarche de l'article : l'immensité du territoire (600 000 km², 150 unités de gestion) et les contraintes d'accès, la sélection des tuiles puis des parcelles par échantillonnage équilibré, et enfin la comparaison par simulation de seize plans de sondage. Le plan à deux degrés équilibré atteint une précision proche du plan de référence, tout en réduisant les coûts de terrain.",
+    },
   },
   {
     slug: 'meteo-australie',
     categorie: 'data',
     titre: 'CLASSIFICATION SUPERVISÉE — MÉTÉO AUSTRALIENNE',
     tags: ['Python', 'Machine Learning'],
-    contexte: 'Projet universitaire · 2025-2026 · IUT Vannes',
+    contexte: 'Projet universitaire · 2025-2026 · Solo',
     resume: 'Prédire la pluie du lendemain en Australie : deux algorithmes de classification comparés.',
     aDetail: true,
     lienExterne: null,
@@ -328,7 +401,23 @@ const projets = [
         ],
       },
     ],
-    legendes: {},
+    galerieEtapes: 'LE DÉROULÉ, ÉTAPE PAR ÉTAPE',
+    legendes: {
+      '01_cible':
+        `Étape 1 — Comprendre la question. Il faut prédire la pluie du lendemain en trois classes, et elles sont très déséquilibrées : près de 80 % des jours sont sans pluie. Ce constat guide tout le projet, car un modèle qui répondrait toujours "pas de pluie" aurait déjà 80 % de bonnes réponses.`,
+      '02_distributions':
+        "Étape 2 — Explorer les données. Les températures suivent une forme proche de la loi normale, mais l'évaporation et le vent sont très asymétriques, avec des valeurs extrêmes. Pour préparer les données, j'ai aussi regroupé les 16 directions de vent en 8, fusionné les mesures de 9 h et 15 h en moyennes journalières pour éviter les doublons d'information, et complété les valeurs manquantes par la moyenne des trois jours précédents dans la même ville.",
+      '03_winsorisation':
+        "Étape 3 — Traiter les valeurs extrêmes. Plutôt que de supprimer des lignes, les valeurs situées au-delà des moustaches du boxplot sont ramenées à ces bornes (winsorisation). On garde toutes les observations tout en limitant l'effet des extrêmes, ce qui compte pour la méthode des k plus proches voisins, très sensible aux distances.",
+      '04_bivariee':
+        "Étape 4 — Repérer les variables qui comptent. Plus la pluie du lendemain est forte, moins la journée a été ensoleillée et plus elle a été humide. Les tests de Fisher et du Khi² confirment que l'ensoleillement, l'humidité, la nébulosité et la pluie du jour sont les facteurs les plus explicatifs.",
+      '05_villes':
+        'La ville joue aussi : Alice Springs, en plein désert, compte 92 % de jours secs, contre 69 % à Norfolk Island. Ce lien est significatif mais bien plus faible que celui de la pluie du jour, c\'est pourquoi la ville n\'a pas été retenue dans le modèle final.',
+      '06_choix_k':
+        "Étape 5 — Régler le modèle. Avec un seul voisin, le modèle apprend par cœur l'échantillon d'apprentissage (100 %) mais généralise mal (78 % en test). En augmentant le nombre de voisins, les deux courbes se rejoignent : le surapprentissage disparaît. Un balayage plus fin a permis de retenir 57 voisins.",
+      '07_resultats':
+        "Étape 6 — Évaluer avec un regard critique. Le modèle final (57 voisins, 4 variables) atteint 81,5 % de bonnes réponses en test, contre 66 % pour le modèle témoin (pluie demain = pluie aujourd'hui) et 75 % pour le classifieur bayésien naïf, avec des scores proches entre apprentissage et test. Mais le score global est trompeur : la pluie légère n'est presque jamais détectée (rappel de 1 %) et la pluie forte une fois sur trois. Les pistes suivantes : rééquilibrer les classes et utiliser une validation croisée.",
+    },
   },
   {
     slug: 'challenge-dataviz',
@@ -359,10 +448,10 @@ export const projetsData = selectionner([
   'statimusic',
   'affiche-soleil',
   'epsm-charcot',
-  'joueurs-fifa',
+  'meteo-australie',
   'accidents-route',
   'sondage-quebec',
-  'meteo-australie',
+  'joueurs-fifa',
   'challenge-dataviz',
 ])
 

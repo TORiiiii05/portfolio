@@ -4,3 +4,4 @@ dist
 .env.local
 *.log
 MAJ_PORTFOLIO.md
+_originaux/

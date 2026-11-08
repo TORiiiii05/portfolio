@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styles from '../pages/Projects.module.css'
 
 export default function ProjectCard({ projet, numero, from }) {
-  const { slug, titre, contexte, resume, tags, aDetail, mentionData } = projet
+  const { slug, titre, contexte, statut, resume, tags, aDetail, plusieursProjets, mentionData } = projet
 
   return (
     <li className={styles.projectItem}>
@@ -18,10 +18,11 @@ export default function ProjectCard({ projet, numero, from }) {
           <p className={styles.projectMention}>{mentionData}</p>
         )}
         {resume && <p className={styles.projectDesc}>{resume}</p>}
-        {(tags.length > 0 || aDetail) && (
+        {(tags.length > 0 || statut || aDetail) && (
           <div className={styles.projectFooter}>
-            {tags.length > 0 && (
+            {(tags.length > 0 || statut) && (
               <ul className={styles.stackList}>
+                {statut && <li className={`${styles.stackTag} ${styles.tagStatut}`}>{statut}</li>}
                 {tags.map((tag) => (
                   <li key={tag} className={styles.stackTag}>{tag}</li>
                 ))}
@@ -29,7 +30,7 @@ export default function ProjectCard({ projet, numero, from }) {
             )}
             {aDetail && (
               <Link to={`/projets/${slug}`} state={{ from }} className={styles.cta}>
-                VOIR LE PROJET →
+                {plusieursProjets ? 'VOIR LES PROJETS →' : 'VOIR LE PROJET →'}
               </Link>
             )}
           </div>

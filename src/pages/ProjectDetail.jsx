@@ -29,8 +29,15 @@ function capturesDuProjet(slug) {
   const prefixe = `../assets/projets/${slug}/`
   return Object.entries(images)
     .filter(([chemin]) => chemin.startsWith(prefixe))
-    .map(([chemin, src]) => ({ nom: chemin.slice(prefixe.length), src }))
+    .map(([chemin, src]) => ({
+      nom: chemin.slice(prefixe.length).replace(/\.[^.]+$/, ''),
+      src,
+    }))
     .sort((a, b) => a.nom.localeCompare(b.nom, 'fr', { numeric: true }))
+}
+
+function correspondASuffixe(capture, suffixe) {
+  return capture.nom.endsWith(`_${suffixe}`)
 }
 
 function Paragraphes({ textes = [] }) {
@@ -39,7 +46,7 @@ function Paragraphes({ textes = [] }) {
   ))
 }
 
-function Section({ section }) {
+function Section({ section, children }) {
   const { titre, sousTitre, paragraphes, liste, colonnes, ligne, noteItalique, variante } = section
 
   if (ligne) {
@@ -56,6 +63,7 @@ function Section({ section }) {
             </div>
           ))}
         </div>
+        {children}
       </section>
     )
   }
@@ -66,6 +74,7 @@ function Section({ section }) {
         {paragraphes.map((texte) => (
           <p key={texte} className={styles.tagline}>{texte}</p>
         ))}
+        {children}
       </section>
     )
   }
@@ -102,13 +111,14 @@ function Section({ section }) {
         </div>
       )}
       {noteItalique && <p className={styles.detailNote}>{noteItalique}</p>}
+      {children}
     </section>
   )
 }
 
 // Réserve la place de l'image avant son chargement, puis adopte ses vraies proportions.
-function Capture({ src, alt, prioritaire }) {
-  const [proportions, setProportions] = useState('16 / 10')
+function Capture({ src, alt, prioritaire, proportionsInitiales = '16 / 10' }) {
+  const [proportions, setProportions] = useState(proportionsInitiales)
 
   return (
     <img
@@ -122,6 +132,80 @@ function Capture({ src, alt, prioritaire }) {
   )
 }
 
+function CaptureLongue({ capture, legende, alt, prioritaire }) {
+  return (
+    <figure className={`${styles.figure} ${styles.figureLongue}`}>
+      <div className={styles.fenetreBarre}>
+        <span className={styles.fenetrePoints} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+        <LienExterne href={capture.src} className={styles.fenetreLien}>
+          VOIR EN GRAND
+        </LienExterne>
+      </div>
+      <div className={styles.fenetreCadre} role="region" tabIndex={0} aria-label={alt}>
+        <Capture src={capture.src} alt={alt} prioritaire={prioritaire} />
+      </div>
+      <figcaption className={styles.figcaption}>
+        Faites défiler pour voir la page entière.{legende && ` ${legende}`}
+      </figcaption>
+    </figure>
+  )
+}
+
+function FiguresEtapes({ captures, legendes, titre, premiere }) {
+  return captures.map((capture) => (
+    <figure key={capture.src} className={`${styles.figure} ${styles.figureEtape}`}>
+      <a href={capture.src} target="_blank" rel="noopener noreferrer" className={styles.etapeLien}>
+        <Capture
+          src={capture.src}
+          alt={legendes[capture.nom] ?? `Capture du projet ${titre}`}
+          prioritaire={capture === premiere}
+          proportionsInitiales="2 / 1"
+        />
+        <span className="sr-only"> (ouvrir en grand dans un nouvel onglet)</span>
+      </a>
+      {legendes[capture.nom] && (
+        <figcaption className={styles.figcaption}>{legendes[capture.nom]}</figcaption>
+      )}
+    </figure>
+  ))
+}
+
+function Figures({ captures, legendes, titre, premiere, detourees }) {
+  return captures.map((capture) => (
+    capture.nom.includes('_long') ? (
+      <CaptureLongue
+        key={capture.src}
+        capture={capture}
+        legende={legendes[capture.nom]}
+        alt={legendes[capture.nom] ?? `Capture du projet ${titre}`}
+        prioritaire={capture === premiere}
+      />
+    ) : (
+    <figure
+      key={capture.src}
+      className={[
+        styles.figure,
+        detourees.includes(capture.nom) && styles.figureDetouree,
+        capture.nom.includes('_mobile') && styles.figureMobile,
+      ].filter(Boolean).join(' ')}
+    >
+      <Capture
+        src={capture.src}
+        alt={legendes[capture.nom] ?? `Capture du projet ${titre}`}
+        prioritaire={capture === premiere}
+      />
+      {legendes[capture.nom] && (
+        <figcaption className={styles.figcaption}>{legendes[capture.nom]}</figcaption>
+      )}
+    </figure>
+    )
+  ))
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams()
   const projet = trouverProjetDetaille(slug)
@@ -133,8 +217,17 @@ export default function ProjectDetail() {
 
 function Projet({ projet }) {
   const location = useLocation()
-  const { slug, titre, contexte, tags, resume, lienExterne, sections, legendes } = projet
+  const { slug, titre, contexte, statut, tags, resume, lienExterne, sections, legendes, capturesDetourees = [], galerieEtapes, noteCaptures } = projet
   const captures = capturesDuProjet(slug)
+  const suffixes = sections.map((section) => section.images).filter(Boolean)
+  const capturesGalerie = captures.filter(
+    (capture) => !suffixes.some((suffixe) => correspondASuffixe(capture, suffixe)),
+  )
+  // La première capture affichée sur la page, quel que soit son nom de fichier.
+  const premiere =
+    suffixes.flatMap((suffixe) => captures.filter((c) => correspondASuffixe(c, suffixe)))[0] ??
+    capturesGalerie[0]
+  const proprietesFigures = { legendes, titre, premiere, detourees: capturesDetourees }
 
   usePageMeta(titre, resume)
 
@@ -156,8 +249,9 @@ function Projet({ projet }) {
         </Link>
         <h1 className={styles.detailTitle}>{titre}</h1>
         {contexte && <p className={styles.heroSub}>{contexte}</p>}
-        {tags.length > 0 && (
+        {(tags.length > 0 || statut) && (
           <ul className={styles.stackList}>
+            {statut && <li className={`${styles.stackTag} ${styles.tagStatut}`}>{statut}</li>}
             {tags.map((tag) => (
               <li key={tag} className={styles.stackTag}>{tag}</li>
             ))}
@@ -170,24 +264,33 @@ function Projet({ projet }) {
         )}
       </section>
 
-      {sections.map((section, index) => (
-        <Section key={section.titre ?? index} section={section} />
-      ))}
+      {sections.map((section, index) => {
+        const capturesSection = section.images
+          ? captures.filter((capture) => correspondASuffixe(capture, section.images))
+          : []
 
-      {captures.length > 0 && (
+        return (
+          <Section key={section.titre ?? index} section={section}>
+            {capturesSection.length > 0 && (
+              <div className={styles.sectionCaptures}>
+                <Figures captures={capturesSection} {...proprietesFigures} />
+              </div>
+            )}
+          </Section>
+        )
+      })}
+
+      {(capturesGalerie.length > 0 || noteCaptures) && (
         <section className={styles.gallery}>
-          {captures.map(({ nom, src }, index) => (
-            <figure key={nom} className={styles.figure}>
-              <Capture
-                src={src}
-                alt={legendes[nom] ?? `Capture du projet ${titre}`}
-                prioritaire={index === 0}
-              />
-              {legendes[nom] && (
-                <figcaption className={styles.figcaption}>{legendes[nom]}</figcaption>
-              )}
-            </figure>
-          ))}
+          {noteCaptures && <p className={styles.detailNote}>{noteCaptures}</p>}
+          {galerieEtapes ? (
+            <>
+              <h3 className={`${styles.ligneTitle} ${styles.etapesTitre}`}>{galerieEtapes}</h3>
+              <FiguresEtapes captures={capturesGalerie} legendes={legendes} titre={titre} premiere={premiere} />
+            </>
+          ) : (
+            <Figures captures={capturesGalerie} {...proprietesFigures} />
+          )}
         </section>
       )}
     </div>

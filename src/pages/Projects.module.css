@@ -138,6 +138,11 @@
   letter-spacing: 0.06em;
 }
 
+.tagStatut {
+  background: #000;
+  color: #faf7f2;
+}
+
 .cta {
   display: inline-block;
   background: #000;
@@ -330,9 +335,109 @@
   gap: 2rem;
 }
 
+.sectionCaptures {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 0.75rem;
+}
+
 .figure img {
   width: 100%;
   border: 2px solid #000;
+}
+
+.figureDetouree {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.figureDetouree img {
+  border: none;
+}
+
+.figureMobile {
+  width: 100%;
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+.etapesTitre,
+.figureEtape {
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.figureEtape img {
+  display: block;
+  background: #fff;
+}
+
+.etapeLien {
+  display: block;
+  cursor: zoom-in;
+}
+
+.figureEtape .figcaption {
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+
+.fenetreBarre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0.75rem;
+  border: 2px solid #000;
+  border-bottom: none;
+}
+
+.fenetrePoints {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.fenetrePoints span {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+.fenetreLien {
+  padding: 0.25rem 0.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.fenetreLien:hover {
+  background: #000;
+  color: #fff;
+}
+
+.fenetreCadre {
+  height: 600px;
+  border: 2px solid #000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-color: #000 #faf7f2;
+}
+
+.figureLongue img {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .fenetreCadre {
+    height: 420px;
+  }
 }
 
 .figcaption {
