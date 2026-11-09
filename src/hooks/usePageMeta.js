@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const SITE = 'https://portfolio-jules-del-frate.vercel.app'
+const SITE = 'https://www.julesdelfrate.fr'
 const TITRE_ACCUEIL = 'Jules Del Frate — Web & communication'
 
 // Sans titre, on utilise celui de l'accueil.

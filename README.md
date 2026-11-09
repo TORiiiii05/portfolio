@@ -2,7 +2,7 @@
 
 Le site personnel de Jules Del Frate, étudiant web & communication : ses projets web, communication et data, ses expériences et un formulaire de contact.
 
-**En ligne :** https://portfolio-jules-del-frate.vercel.app
+**En ligne :** https://www.julesdelfrate.fr
 
 ## Stack
 
