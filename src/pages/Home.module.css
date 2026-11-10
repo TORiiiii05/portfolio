@@ -8,7 +8,7 @@
 
 /* ── HERO ── */
 .hero {
-  padding: 5rem 2rem 4rem;
+  padding: calc(5rem / 3) 2rem 4rem;
   border-bottom: 2px solid #000;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
 
 .heroLabel {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -34,7 +34,7 @@
 
 .heroTitle {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-size: clamp(var(--fs-85), calc(2vw + 2px), calc(1.1rem + 2px));
   line-height: 1.6;
   border-left: 3px solid #000;
   padding-left: 1rem;
@@ -43,7 +43,7 @@
 
 .heroCatch {
   font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
+  font-size: var(--fs-82);
   line-height: 1.75;
   max-width: 520px;
   opacity: 0.7;
@@ -54,7 +54,7 @@
   border: 2px solid #000;
   padding: 0.65rem 1.5rem;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
+  font-size: var(--fs-75);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: background 0.12s, color 0.12s;
@@ -73,7 +73,7 @@
 
 .indexLabel {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
+  font-size: var(--fs-60);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -114,7 +114,7 @@
 
 .indexNum {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.1em;
   opacity: 0.6;
   white-space: nowrap;
@@ -129,7 +129,7 @@
 
 .indexDesc {
   font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
+  font-size: var(--fs-70);
   opacity: 0.6;
   text-align: right;
   white-space: nowrap;
@@ -137,12 +137,12 @@
 
 .indexArrow {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 1rem;
+  font-size: var(--fs-100);
 }
 
 @media (max-width: 640px) {
   .hero {
-    padding: 3rem 1.25rem 2.5rem;
+    padding: 1rem 1.25rem 2.5rem;
   }
 
   .index {

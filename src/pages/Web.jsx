@@ -7,7 +7,7 @@ export default function Web() {
     <ProjectList
       numero="02 —"
       titre="Web & Com"
-      intro="Sites, interfaces et communication : des projets pour de vrais clients, en formation ou par curiosité."
+      intro="Des sites conçus de A à Z, de la maquette à la mise en ligne, et des stratégies de communication pensées pour leur public."
       projets={projetsWeb}
       from="/web"
     >

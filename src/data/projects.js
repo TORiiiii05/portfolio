@@ -137,7 +137,7 @@ const projets = [
     categorie: 'web',
     titre: 'LANDING PAGES — DE LA MAQUETTE AU CODE',
     tags: ['Figma', 'HTML', 'CSS'],
-    contexte: 'Projets perso et universitaire · 2024 — 2026',
+    contexte: 'Projets personnels et universitaires · 2024 — 2026',
     resume:
       'Deux landing pages pour deux étapes de mon apprentissage du web : une maquette Figma, puis un mini-site codé en HTML et CSS.',
     aDetail: true,
@@ -146,7 +146,7 @@ const projets = [
     sections: [
       {
         titre: "Vinyles pour seniors libres d'esprit — Figma",
-        sousTitre: 'Projet perso · Challenge en 2 heures · 2024',
+        sousTitre: 'Projet personnel · Challenge en 2 heures · 2024',
         images: 'vinyles',
         paragraphes: [
           "Inspiré par un challenge vu sur YouTube, avant même de commencer mes études de web. Le défi : trouver un sujet et le concevoir en deux heures. J'ai choisi la vente de vinyles avec une cible très précise, des seniors cool et libres d'esprit, pour donner au site une identité visuelle marquée. Wireframe, palette, typographie, puis landing page complète, sur un outil que je n'avais jamais utilisé.",
@@ -223,7 +223,7 @@ const projets = [
     slug: 'affiche-soleil',
     categorie: 'data',
     titre: 'AFFICHE « SOLEIL » — MES ALBUMS EN DÉGRADÉ',
-    tags: ['Python', 'Data visualisation', 'Projet perso'],
+    tags: ['Python', 'Data visualisation', 'Projet personnel'],
     contexte: 'Projet personnel · 2026 · Solo',
     resume:
       "Une affiche imprimable de mes 339 albums les plus écoutés, classés par temps d'écoute et disposés en disque selon leur couleur dominante.",

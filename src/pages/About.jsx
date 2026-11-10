@@ -1,6 +1,84 @@
+import { Link } from 'react-router-dom'
 import Doodle from '../components/Doodle'
 import usePageMeta from '../hooks/usePageMeta'
+import vignetteLelievre from '../assets/projets/lelievre-paysage/02_accueil_long.webp'
 import styles from './About.module.css'
+
+// Première capture du dossier Statimusic, si elle existe (sinon un bloc noir la remplace).
+const capturesStatimusic = import.meta.glob('../assets/projets/statimusic/*.{webp,png,jpg,jpeg}', {
+  eager: true,
+  import: 'default',
+})
+const vignetteStatimusic = Object.keys(capturesStatimusic)
+  .sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }))
+  .map((chemin) => capturesStatimusic[chemin])[0]
+
+const apercu = [
+  {
+    sousTitre: 'EXPÉRIENCES',
+    cartes: [
+      {
+        titre: 'ORANGE FRANCE',
+        meta: 'Data scientist · 2026 · 3 mois',
+        lien: '/experience#orange-france',
+      },
+      {
+        titre: 'STATISTIQUE CANADA',
+        meta: 'Statisticien méthodologiste · 2025 · 3 mois',
+        lien: '/experience#statistique-canada',
+      },
+    ],
+  },
+  {
+    sousTitre: 'PROJETS PHARES',
+    cartes: [
+      {
+        titre: 'LELIÈVRE PAYSAGE',
+        meta: 'Site vitrine WordPress · Projet client',
+        lien: '/projets/lelievre-paysage',
+        vignette: vignetteLelievre,
+      },
+      {
+        titre: 'STATIMUSIC',
+        meta: 'Application web · Projet personnel',
+        lien: '/projets/statimusic',
+        vignette: vignetteStatimusic,
+        vignetteTexte: 'STATIMUSIC',
+        badge: 'EN RECONSTRUCTION',
+      },
+    ],
+  },
+]
+
+// En haut de la carte : la vignette du projet, un bloc noir à son nom si le projet
+// n'a pas encore de capture, ou une fine bande noire pour les expériences.
+function HautDeCarte({ vignette, vignetteTexte }) {
+  if (vignette) {
+    return <img src={vignette} alt="" className={styles.carteVignette} loading="lazy" decoding="async" />
+  }
+  if (vignetteTexte) {
+    return (
+      <span className={styles.carteBande} aria-hidden="true">
+        <span className={styles.carteBandeNom}>{vignetteTexte}</span>
+      </span>
+    )
+  }
+  return <span className={styles.carteFineBande} aria-hidden="true" />
+}
+
+function CarteApercu({ titre, meta, lien, vignette, vignetteTexte, badge }) {
+  return (
+    <Link to={lien} state={{ from: '/about' }} className={styles.carte}>
+      <HautDeCarte vignette={vignette} vignetteTexte={vignetteTexte} />
+      <span className={styles.carteCorps}>
+        <span className={styles.carteTitre}>{titre}</span>
+        <span className={styles.carteMeta}>{meta}</span>
+        {badge && <span className={styles.carteBadge}>{badge}</span>}
+        <span className={styles.cartePlus}>EN SAVOIR PLUS →</span>
+      </span>
+    </Link>
+  )
+}
 
 const skills = [
   {
@@ -72,76 +150,98 @@ export default function About() {
         <h1 className={styles.title}>À propos</h1>
       </section>
 
-      <div className={styles.grid}>
+      <div className={styles.ligneProfil}>
         <section className={styles.bio}>
           <p className={styles.blockLabel}>PROFIL</p>
           <p className={styles.bioText}>
-            Diplômé d'un BUT Science des Données à l'IUT de Vannes, je suis aujourd'hui en licence
-            professionnelle Conception, rédaction et réalisation de site web. Mes projets m'ont fait
-            découvrir une autre facette du numérique : en concevant le front-end d'une application
-            pour l'EPSM Charcot, puis en créant Statimusic de A à Z, j'ai pris goût à la création —
-            la mise en page, les couleurs, l'identité d'un projet. Le web me permet aujourd'hui de
-            réunir les deux : l'analyse et la création.
+            En licence professionnelle de conception de sites web, j'arrive avec un bagage peu
+            commun : un BUT Science des Données et deux stages, chez Statistique Canada à Ottawa
+            puis chez Orange. J'y ai appris à travailler sur des données réelles, en équipe et en
+            autonomie.
+          </p>
+          <p className={styles.bioText}>
+            Côté création, j'ai développé un site d'analyse d'écoutes musicales, réalisé le site
+            vitrine d'un paysagiste et conçu une application de visualisation de données.
+          </p>
+          <p className={styles.bioText}>
+            Mon objectif : créer des sites clairs et utiles, dont je sais aussi mesurer
+            l'efficacité.
           </p>
         </section>
 
-        <aside className={styles.aside}>
-          <div className={styles.infoBlock}>
-            <p className={styles.blockLabel}>FORMATION</p>
-            <ul className={styles.infoList}>
-              <li className={styles.infoItem}>
-                <span className={styles.infoDot}>—</span>
-                <div>
-                  <p className={styles.infoTitle}>Licence Pro Conception, rédaction et réalisation de site web</p>
-                  <p className={styles.infoSub}>Institut de la Communication et des Médias, Échirolles · 2026 — 2027</p>
-                </div>
-              </li>
-              <li className={styles.infoItem}>
-                <span className={styles.infoDot}>—</span>
-                <div>
-                  <p className={styles.infoTitle}>BUT Science des Données</p>
-                  <p className={styles.infoSub}>IUT Vannes · 2023 — 2026</p>
-                  <p className={styles.infoSub}>Spécialisation : Étude et Modélisation Statistique · Option Mathématiques</p>
-                </div>
-              </li>
-              <li className={styles.infoItem}>
-                <span className={styles.infoDot}>—</span>
-                <div>
-                  <p className={styles.infoTitle}>Baccalauréat Général</p>
-                  <p className={styles.infoSub}>Lycée René Cassin · 2020 — 2023</p>
-                  <p className={styles.infoSub}>Spécialités : Mathématiques et SES · Mention Bien</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+        <section className={styles.apercu}>
+          <p className={styles.blockLabel}>APERÇU RAPIDE</p>
+          {apercu.map(({ sousTitre, cartes }) => (
+            <div key={sousTitre} className={styles.apercuGroupe}>
+              <h2 className={styles.apercuSousTitre}>{sousTitre}</h2>
+              <ul className={styles.apercuCartes}>
+                {cartes.map((carte) => (
+                  <li key={carte.titre}>
+                    <CarteApercu {...carte} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      </div>
 
-          <div className={styles.infoBlock}>
-            <p className={styles.blockLabel}>LANGUES</p>
-            <ul className={styles.infoList}>
-              <li className={styles.infoItem}>
-                <span className={styles.infoDot}>—</span>
-                <div>
-                  <p className={styles.infoTitle}>Français</p>
-                  <p className={styles.infoSub}>Langue maternelle</p>
-                </div>
-              </li>
-              <li className={styles.infoItem}>
-                <span className={styles.infoDot}>—</span>
-                <div>
-                  <p className={styles.infoTitle}>Anglais</p>
-                  <p className={styles.infoSub}>C1 (955 TOEIC)</p>
-                </div>
-              </li>
-              <li className={styles.infoItem}>
-                <span className={styles.infoDot}>—</span>
-                <div>
-                  <p className={styles.infoTitle}>Italien</p>
-                  <p className={styles.infoSub}>Débutant, en cours d'apprentissage</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </aside>
+      <div className={styles.ligneInfos}>
+        <div className={`${styles.infoBlock} ${styles.formation}`}>
+          <p className={styles.blockLabel}>FORMATION</p>
+          <ul className={styles.infoList}>
+            <li className={styles.infoItem}>
+              <span className={styles.infoDot}>—</span>
+              <div>
+                <p className={styles.infoTitle}>Licence Pro Conception, rédaction et réalisation de site web</p>
+                <p className={styles.infoSub}>Institut de la Communication et des Médias, Échirolles · 2026 — 2027</p>
+              </div>
+            </li>
+            <li className={styles.infoItem}>
+              <span className={styles.infoDot}>—</span>
+              <div>
+                <p className={styles.infoTitle}>BUT Science des Données</p>
+                <p className={styles.infoSub}>IUT Vannes · 2023 — 2026</p>
+                <p className={styles.infoSub}>Spécialisation : Étude et Modélisation Statistique · Option Mathématiques</p>
+              </div>
+            </li>
+            <li className={styles.infoItem}>
+              <span className={styles.infoDot}>—</span>
+              <div>
+                <p className={styles.infoTitle}>Baccalauréat Général</p>
+                <p className={styles.infoSub}>Lycée René Cassin · 2020 — 2023</p>
+                <p className={styles.infoSub}>Spécialités : Mathématiques et SES · Mention Bien</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div className={`${styles.infoBlock} ${styles.langues}`}>
+          <p className={styles.blockLabel}>LANGUES</p>
+          <ul className={styles.infoList}>
+            <li className={styles.infoItem}>
+              <span className={styles.infoDot}>—</span>
+              <div>
+                <p className={styles.infoTitle}>Français</p>
+                <p className={styles.infoSub}>Langue maternelle</p>
+              </div>
+            </li>
+            <li className={styles.infoItem}>
+              <span className={styles.infoDot}>—</span>
+              <div>
+                <p className={styles.infoTitle}>Anglais</p>
+                <p className={styles.infoSub}>C1 (955 TOEIC)</p>
+              </div>
+            </li>
+            <li className={styles.infoItem}>
+              <span className={styles.infoDot}>—</span>
+              <div>
+                <p className={styles.infoTitle}>Italien</p>
+                <p className={styles.infoSub}>Débutant, en cours d'apprentissage</p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <section className={styles.skillsSection}>

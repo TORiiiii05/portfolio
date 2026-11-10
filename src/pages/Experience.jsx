@@ -5,6 +5,7 @@ import styles from './Experience.module.css'
 const experiences = [
   {
     num: '01',
+    id: 'orange-france',
     company: 'Orange France',
     role: 'Data Scientist — Ciblage Marketing Pro/PME',
     period: 'Février – Mai 2026 · 3 mois',
@@ -23,6 +24,7 @@ const experiences = [
   },
   {
     num: '02',
+    id: 'statistique-canada',
     company: 'Statistique Canada',
     role: 'Stagiaire en Méthodologie Statistique — Couplage Probabiliste',
     period: 'Avril – Juin 2025 · 3 mois',
@@ -64,7 +66,7 @@ export default function Experience() {
 
       <ul className={styles.expList}>
         {experiences.map((exp) => (
-          <li key={exp.num} className={`${styles.expItem} ${exp.highlight ? styles.expHighlight : ''}`}>
+          <li key={exp.num} id={exp.id} className={`${styles.expItem} ${exp.highlight ? styles.expHighlight : ''}`}>
             <div className={styles.expSide}>
               <span className={styles.expNum}>{exp.num}</span>
               <span className={styles.expType}>{exp.type}</span>

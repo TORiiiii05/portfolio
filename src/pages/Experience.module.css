@@ -8,13 +8,13 @@
 
 .hero {
   position: relative;
-  padding: 4rem 2rem 2.5rem;
+  padding: calc(4rem / 3) 2rem 2.5rem;
   border-bottom: 2px solid #000;
 }
 
 .sectionNum {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.2em;
   opacity: 0.6;
   margin-bottom: 0.5rem;
@@ -30,7 +30,7 @@
 
 .heroSub {
   font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
+  font-size: var(--fs-82);
   line-height: 1.75;
   opacity: 0.65;
   max-width: 560px;
@@ -47,6 +47,8 @@
   display: grid;
   grid-template-columns: 80px 1fr;
   border-bottom: 2px solid #000;
+  /* Arrivée par ancre (#orange-france…) : le bloc s'arrête sous l'en-tête fixe. */
+  scroll-margin-top: calc(var(--hauteur-entete) + 24px);
 }
 
 .expHighlight {
@@ -71,7 +73,7 @@
 
 .expType {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.55rem;
+  font-size: var(--fs-55);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -106,14 +108,14 @@
 
 .expRole {
   font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
+  font-size: var(--fs-82);
   font-weight: 700;
   line-height: 1.4;
 }
 
 .expPeriod {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.1em;
   opacity: 0.6;
 }
@@ -146,7 +148,7 @@
 
 .missionText {
   font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
+  font-size: var(--fs-80);
   line-height: 1.8;
   opacity: 0.7;
 }
@@ -166,7 +168,7 @@
 
 .stackTag {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   border: 2px solid #000;
   padding: 0.15rem 0.5rem;
   letter-spacing: 0.06em;
@@ -183,7 +185,7 @@
 
 .cvLabel {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
+  font-size: var(--fs-60);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -191,7 +193,7 @@
 
 .cvText {
   font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
+  font-size: var(--fs-80);
   opacity: 0.65;
   line-height: 1.6;
 }
@@ -201,7 +203,7 @@
   border: 2px solid #000;
   padding: 0.65rem 1.5rem;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
+  font-size: var(--fs-75);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: background 0.12s, color 0.12s;

@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Doodle from '../components/Doodle'
 import LienExterne from '../components/LienExterne'
 import usePageMeta from '../hooks/usePageMeta'
-import { pageDuProjet, trouverProjetDetaille } from '../data/projects'
+import { trouverProjetDetaille } from '../data/projects'
 import NotFound from './NotFound'
 import styles from './Projects.module.css'
 
@@ -132,7 +132,24 @@ function Capture({ src, alt, prioritaire, proportionsInitiales = '16 / 10' }) {
   )
 }
 
+// Met en gras le début de la légende, jusqu'au premier « : » ou « — » inclus.
+function Legende({ texte }) {
+  const positions = [texte.indexOf(':'), texte.indexOf('—')].filter((i) => i >= 0)
+  if (positions.length === 0) return texte
+  const fin = Math.min(...positions) + 1
+  return (
+    <>
+      <strong>{texte.slice(0, fin)}</strong>
+      {texte.slice(fin)}
+    </>
+  )
+}
+
 function CaptureLongue({ capture, legende, alt, prioritaire }) {
+  // Le voile disparaît au premier clic, défilement ou focus, et ne revient pas.
+  const [voileVisible, setVoileVisible] = useState(true)
+  const masquerVoile = () => setVoileVisible(false)
+
   return (
     <figure className={`${styles.figure} ${styles.figureLongue}`}>
       <div className={styles.fenetreBarre}>
@@ -145,12 +162,32 @@ function CaptureLongue({ capture, legende, alt, prioritaire }) {
           VOIR EN GRAND
         </LienExterne>
       </div>
-      <div className={styles.fenetreCadre} role="region" tabIndex={0} aria-label={alt}>
-        <Capture src={capture.src} alt={alt} prioritaire={prioritaire} />
+      <div className={styles.fenetreZone}>
+        <div
+          className={styles.fenetreCadre}
+          role="region"
+          tabIndex={0}
+          aria-label={alt}
+          onClick={masquerVoile}
+          onScroll={masquerVoile}
+          onWheel={masquerVoile}
+          onTouchMove={masquerVoile}
+          onFocus={masquerVoile}
+        >
+          <Capture src={capture.src} alt={alt} prioritaire={prioritaire} />
+        </div>
+        <div
+          className={`${styles.fenetreVoile} ${voileVisible ? '' : styles.fenetreVoileMasque}`}
+          aria-hidden="true"
+        >
+          <span className={styles.fenetreMessage}>↕ FAITES DÉFILER POUR VOIR LA PAGE ENTIÈRE</span>
+        </div>
       </div>
-      <figcaption className={styles.figcaption}>
-        Faites défiler pour voir la page entière.{legende && ` ${legende}`}
-      </figcaption>
+      {legende && (
+        <figcaption className={styles.figcaption}>
+          <Legende texte={legende} />
+        </figcaption>
+      )}
     </figure>
   )
 }
@@ -168,7 +205,7 @@ function FiguresEtapes({ captures, legendes, titre, premiere }) {
         <span className="sr-only"> (ouvrir en grand dans un nouvel onglet)</span>
       </a>
       {legendes[capture.nom] && (
-        <figcaption className={styles.figcaption}>{legendes[capture.nom]}</figcaption>
+        <figcaption className={styles.figcaption}><Legende texte={legendes[capture.nom]} /></figcaption>
       )}
     </figure>
   ))
@@ -199,7 +236,7 @@ function Figures({ captures, legendes, titre, premiere, detourees }) {
         prioritaire={capture === premiere}
       />
       {legendes[capture.nom] && (
-        <figcaption className={styles.figcaption}>{legendes[capture.nom]}</figcaption>
+        <figcaption className={styles.figcaption}><Legende texte={legendes[capture.nom]} /></figcaption>
       )}
     </figure>
     )
@@ -217,6 +254,7 @@ export default function ProjectDetail() {
 
 function Projet({ projet }) {
   const location = useLocation()
+  const navigate = useNavigate()
   const { slug, titre, contexte, statut, tags, resume, lienExterne, sections, legendes, capturesDetourees = [], galerieEtapes, noteCaptures } = projet
   const captures = capturesDuProjet(slug)
   const suffixes = sections.map((section) => section.images).filter(Boolean)
@@ -231,6 +269,14 @@ function Projet({ projet }) {
 
   usePageMeta(titre, resume)
 
+  // Arrivé depuis une autre page du site : on y revient, à la même position.
+  // Lien ouvert directement : le lien mène à la page de la catégorie du projet.
+  function retourner(e) {
+    if (location.key === 'default') return
+    e.preventDefault()
+    navigate(-1)
+  }
+
   // Le doodle 05 est plus haut que les autres : on le remonte pour qu'il ne touche pas le titre.
   const doodleTop = slug === 'accidents-route' ? '30px' : '42px'
 
@@ -244,7 +290,7 @@ function Projet({ projet }) {
           right="2rem"
           mobile={{ taille: 60, top: doodleTop, right: '16px' }}
         />
-        <Link to={pageDuProjet(projet, location.state?.from)} className={styles.backLink}>
+        <Link to={`/${projet.categorie}`} onClick={retourner} className={styles.backLink}>
           ← RETOUR
         </Link>
         <h1 className={styles.detailTitle}>{titre}</h1>

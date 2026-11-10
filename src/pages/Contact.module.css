@@ -8,13 +8,13 @@
 
 .hero {
   position: relative;
-  padding: 4rem 2rem 2.5rem;
+  padding: calc(4rem / 3) 2rem 2.5rem;
   border-bottom: 2px solid #000;
 }
 
 .sectionNum {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.2em;
   opacity: 0.6;
   margin-bottom: 0.5rem;
@@ -30,7 +30,7 @@
 
 .heroSub {
   font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
+  font-size: var(--fs-82);
   line-height: 1.75;
   opacity: 0.65;
   max-width: 560px;
@@ -44,7 +44,7 @@
 
 .blockLabel {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
+  font-size: var(--fs-60);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -72,7 +72,7 @@
 
 .label {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
+  font-size: var(--fs-60);
   letter-spacing: 0.18em;
   opacity: 0.6;
 }
@@ -80,7 +80,7 @@
 .input,
 .textarea {
   font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
+  font-size: var(--fs-82);
   background: #faf7f2;
   color: #000;
   border: 2px solid #000;
@@ -108,7 +108,7 @@
   border: 2px solid #000;
   padding: 0.75rem 2rem;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.8rem;
+  font-size: var(--fs-80);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
@@ -142,7 +142,7 @@
 
 .consentText {
   font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
+  font-size: var(--fs-75);
   line-height: 1.6;
 }
 
@@ -156,7 +156,7 @@
 
 .sentMsg {
   font-family: 'Space Mono', monospace;
-  font-size: 0.85rem;
+  font-size: var(--fs-85);
   line-height: 1.7;
   border: 2px solid #000;
   padding: 1.5rem;
@@ -171,8 +171,7 @@
   gap: 2.5rem;
 }
 
-.linksBlock,
-.availBlock {
+.linksBlock {
   display: flex;
   flex-direction: column;
 }
@@ -199,7 +198,7 @@
 
 .linkLabel {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.55rem;
+  font-size: var(--fs-55);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -207,7 +206,7 @@
 
 .linkValue {
   font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
+  font-size: var(--fs-75);
   line-height: 1.4;
   border-bottom: 2px solid transparent;
   transition: border-color 0.1s;
@@ -216,15 +215,6 @@
 
 .linkValue:hover {
   border-color: #000;
-}
-
-.availText {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
-  line-height: 1.75;
-  opacity: 0.65;
-  border-left: 3px solid #000;
-  padding-left: 0.85rem;
 }
 
 @media (max-width: 900px) {

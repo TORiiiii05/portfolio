@@ -19,7 +19,7 @@ export default function Home() {
       <Doodle
         numero={17}
         taille={140}
-        top="130px"
+        top="calc(130px - 10rem / 3)"
         left="calc(5rem + 3.7 * clamp(5rem, 14vw, 11rem))"
         mobile={{ taille: 72, top: '8px', right: '30px' }}
       />

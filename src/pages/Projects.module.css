@@ -9,7 +9,7 @@
 /* ── HERO ── */
 .hero {
   position: relative;
-  padding: 4rem 2rem 2.5rem;
+  padding: calc(4rem / 3) 2rem 2.5rem;
   border-bottom: 2px solid #000;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
 
 .sectionNum {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.2em;
   opacity: 0.6;
   margin-bottom: 0.5rem;
@@ -34,7 +34,7 @@
 
 .heroSub {
   font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
+  font-size: var(--fs-82);
   line-height: 1.75;
   opacity: 0.65;
   max-width: 560px;
@@ -92,7 +92,7 @@
 
 .projectType {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 2px solid #000;
@@ -102,7 +102,7 @@
 
 .projectMention {
   font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
+  font-size: var(--fs-78);
   line-height: 1.6;
   border-left: 3px solid #000;
   padding-left: 0.75rem;
@@ -110,7 +110,7 @@
 
 .projectDesc {
   font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
+  font-size: var(--fs-80);
   line-height: 1.85;
   opacity: 0.7;
 }
@@ -132,7 +132,7 @@
 
 .stackTag {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   border: 2px solid #000;
   padding: 0.15rem 0.5rem;
   letter-spacing: 0.06em;
@@ -150,7 +150,7 @@
   border: 2px solid #000;
   padding: 0.65rem 1.5rem;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
+  font-size: var(--fs-75);
   letter-spacing: 0.12em;
   transition: background 0.12s, color 0.12s;
 }
@@ -163,7 +163,7 @@
 /* ── PAGE DÉTAILLÉE ── */
 .backLink {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
+  font-size: var(--fs-70);
   letter-spacing: 0.1em;
   border-bottom: 2px solid #000;
   padding-bottom: 0.1rem;
@@ -211,7 +211,7 @@
 
 .tagline {
   font-family: 'Space Mono', monospace;
-  font-size: 0.9rem;
+  font-size: var(--fs-90);
   line-height: 1.7;
   border-left: 3px solid #000;
   padding-left: 1rem;
@@ -267,7 +267,7 @@
 
 .sectionSub {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
+  font-size: var(--fs-70);
   letter-spacing: 0.08em;
   line-height: 1.6;
   opacity: 0.65;
@@ -275,7 +275,7 @@
 
 .detailNote {
   font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
+  font-size: var(--fs-78);
   font-style: italic;
   line-height: 1.8;
   opacity: 0.7;
@@ -314,7 +314,7 @@
 
 .contextBlockLabel {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
+  font-size: var(--fs-60);
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -323,23 +323,38 @@
 
 .contextText {
   font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
+  font-size: var(--fs-78);
   line-height: 1.8;
   opacity: 0.7;
 }
 
 .gallery {
-  padding: 2.5rem 2rem 4rem;
+  padding: 2.5rem var(--marge) 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* Les captures d'une section s'éloignent des bords autant que la galerie (--marge),
+   en tenant compte du padding de la section qui les contient. */
 .sectionCaptures {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-top: 0.75rem;
+  padding-inline: max(0px, calc(var(--marge) - 2rem));
+}
+
+/* Double l'espace entre la légende d'une capture et la capture suivante. */
+.gallery .figure + .figure,
+.sectionCaptures .figure + .figure {
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .sectionCaptures {
+    padding-inline: max(0px, calc(var(--marge) - 1.25rem));
+  }
 }
 
 .figure img {
@@ -381,7 +396,6 @@
 }
 
 .figureEtape .figcaption {
-  font-size: 0.78rem;
   line-height: 1.8;
 }
 
@@ -410,7 +424,7 @@
 .fenetreLien {
   padding: 0.25rem 0.5rem;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
+  font-size: var(--fs-65);
   letter-spacing: 0.1em;
   white-space: nowrap;
 }
@@ -428,6 +442,48 @@
   scrollbar-color: #000 #faf7f2;
 }
 
+/* Voile d'indication posé sur la fenêtre défilante jusqu'au premier geste.
+   Il laisse passer les clics et le défilement vers le cadre en dessous. */
+.fenetreZone {
+  position: relative;
+}
+
+.fenetreVoile {
+  position: absolute;
+  inset: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(250, 247, 242, 0.55);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+  transition: opacity 0.3s, visibility 0s linear 0.3s;
+}
+
+.fenetreVoileMasque {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fenetreMessage {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 0.65rem 1.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--fs-75);
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fenetreVoile {
+    transition: none;
+  }
+}
+
 .figureLongue img {
   display: block;
   width: 100%;
@@ -442,14 +498,20 @@
 
 .figcaption {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
+  font-size: var(--fs-legende);
   line-height: 1.6;
+  color: #000;
+  opacity: 1;
   margin-top: 0.5rem;
+}
+
+.figcaption strong {
+  font-weight: 700;
 }
 
 /* ── 404 ── */
 .notFound {
-  padding: 5rem 2rem 6rem;
+  padding: calc(5rem / 3) 2rem 6rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -485,7 +547,6 @@
 @media (max-width: 640px) {
   .hero,
   .detailSection,
-  .gallery,
   .notFound {
     padding-left: 1.25rem;
     padding-right: 1.25rem;

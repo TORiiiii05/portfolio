@@ -157,13 +157,6 @@ export default function Contact() {
               ))}
             </ul>
           </div>
-
-          <div className={styles.availBlock}>
-            <p className={styles.blockLabel}>DISPONIBILITÉ</p>
-            <p className={styles.availText}>
-              En recherche d'un stage de 3 mois en web et communication, à partir d'avril 2027.
-            </p>
-          </div>
         </aside>
       </div>
     </div>
