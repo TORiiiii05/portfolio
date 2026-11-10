@@ -5,9 +5,15 @@
 }
 
 :root {
-  --black: #000000;
-  --white: #faf7f2;
-  --border: 2px solid #000000;
+  /* Couleurs du thème clair. Le mode nuit les redéfinit plus bas ([data-theme="dark"]). */
+  --encre: #000000;
+  --fond: #faf7f2;
+  --encre-douce: #333333;
+  --fond-accent: #f5f5f5;
+  --black: var(--encre);
+  --white: var(--fond);
+  --border: 2px solid var(--encre);
+  color-scheme: light;
   --font-title: 'Anton', sans-serif;
   --font-mono: 'Space Mono', monospace;
   --font-mono-alt: 'IBM Plex Mono', monospace;
@@ -45,8 +51,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mode nuit : encre claire sur fond sombre, choisi avec le bouton du header. */
+:root[data-theme="dark"] {
+  --encre: #f3efe8;
+  --fond: #141414;
+  --encre-douce: #c8c3ba;
+  --fond-accent: #262626;
+  color-scheme: dark;
+}
+
 /* En-tête en mode burger (même seuil que dans Nav.module.css). */
-@media (max-width: 1040px) {
+@media (max-width: 1100px) {
   :root {
     --hauteur-entete: 69px;
   }
@@ -87,7 +102,7 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid var(--encre);
   outline-offset: 2px;
 }
 
@@ -104,12 +119,12 @@ img {
 }
 
 .lien-texte {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--encre);
 }
 
 .lien-texte:hover {
-  background: #000;
-  color: #fff;
+  background: var(--encre);
+  color: var(--fond);
 }
 
 @media (prefers-reduced-motion: reduce) {

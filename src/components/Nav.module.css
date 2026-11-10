@@ -1,5 +1,5 @@
 .header {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--encre);
   padding: 1.25rem 2rem;
   display: flex;
   align-items: center;
@@ -7,7 +7,7 @@
   gap: 2rem;
   position: sticky;
   top: 0;
-  background: #faf7f2;
+  background: var(--fond);
   z-index: 90;
 }
 
@@ -56,13 +56,13 @@
 }
 
 .link:hover {
-  border-color: #000;
+  border-color: var(--encre);
 }
 
 .linkActive {
-  background: #000;
-  color: #fff;
-  border-color: #000;
+  background: var(--encre);
+  color: var(--fond);
+  border-color: var(--encre);
 }
 
 .linkNum {
@@ -74,6 +74,42 @@
   opacity: 0.7;
 }
 
+/* Menu poussé à droite, suivi du bouton mode nuit (et du burger sur mobile). */
+.nav {
+  margin-left: auto;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Bouton mode nuit : même gabarit que le burger. */
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  background: none;
+  color: var(--encre);
+  border: 2px solid var(--encre);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+}
+
+.theme svg {
+  width: 16px;
+  height: 16px;
+}
+
+.theme:hover {
+  background: var(--encre);
+  color: var(--fond);
+}
+
 /* Burger button */
 .burger {
   display: none;
@@ -81,7 +117,7 @@
   justify-content: center;
   gap: 5px;
   background: none;
-  border: 2px solid #000;
+  border: 2px solid var(--encre);
   padding: 0.45rem 0.5rem;
   cursor: pointer;
   flex-shrink: 0;
@@ -91,7 +127,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #000;
+  background: var(--encre);
   transition: transform 0.2s, opacity 0.2s;
 }
 
@@ -99,7 +135,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #000;
+  background: var(--encre);
 }
 
 .burgerLineOpen:first-child {
@@ -110,7 +146,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #000;
+  background: var(--encre);
   opacity: 0;
 }
 
@@ -118,8 +154,9 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Le menu complet ne tient plus sur une ligne sous ~1030 px : on passe au burger avant. */
-@media (max-width: 1040px) {
+/* Le menu complet et le bouton mode nuit ne tiennent plus sur une ligne sous ~1065 px :
+   on passe au burger avant. */
+@media (max-width: 1100px) {
   .header {
     padding: 1rem 1.25rem;
     flex-wrap: wrap;
@@ -129,12 +166,18 @@
     display: flex;
   }
 
+  .actions {
+    margin-left: auto;
+  }
+
   .nav {
     display: none;
+    order: 3;
+    margin-left: 0;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
-    border-top: 2px solid #000;
+    border-top: 2px solid var(--encre);
     margin-top: 0.75rem;
     padding-top: 0.75rem;
     gap: 0;
@@ -148,7 +191,7 @@
     width: 100%;
     padding: 0.65rem 0;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--encre);
   }
 
   .link:last-child {
@@ -157,12 +200,12 @@
 
   .link:hover {
     border-color: transparent;
-    background: #f0f0f0;
+    background: var(--fond-accent);
   }
 
   .linkActive {
-    background: #000;
-    color: #fff;
+    background: var(--encre);
+    color: var(--fond);
     border-color: transparent;
   }
 

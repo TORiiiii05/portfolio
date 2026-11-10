@@ -5,7 +5,7 @@
 
 .sidebar {
   width: 6px;
-  background-color: #000;
+  background-color: var(--encre);
   flex-shrink: 0;
   position: fixed;
   top: 0;
@@ -36,9 +36,9 @@
   top: 0.5rem;
   left: 1rem;
   z-index: 200;
-  background: #000;
-  color: #fff;
-  border: 2px solid #000;
+  background: var(--encre);
+  color: var(--fond);
+  border: 2px solid var(--encre);
   padding: 0.65rem 1.5rem;
   font-family: 'IBM Plex Mono', monospace;
   font-size: var(--fs-75);
@@ -60,7 +60,7 @@
 }
 
 .footer {
-  border-top: 2px solid #000;
+  border-top: 2px solid var(--encre);
   padding: 1.25rem 2rem;
   display: flex;
   justify-content: space-between;

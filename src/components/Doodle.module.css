@@ -18,6 +18,11 @@
   pointer-events: none;
 }
 
+/* Mode nuit : les traits noirs des doodles deviennent clairs. */
+:global(:root[data-theme='dark']) .visible {
+  filter: invert(1);
+}
+
 .zone {
   z-index: 1;
   opacity: 0;

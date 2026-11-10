@@ -9,7 +9,7 @@
 .hero {
   position: relative;
   padding: calc(4rem / 3) 2rem 2.5rem;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--encre);
 }
 
 .sectionNum {
@@ -54,7 +54,7 @@
 /* ── FORM ── */
 .formSection {
   padding: 2.5rem 2rem 4rem;
-  border-right: 2px solid #000;
+  border-right: 2px solid var(--encre);
 }
 
 .form {
@@ -81,9 +81,9 @@
 .textarea {
   font-family: 'Space Mono', monospace;
   font-size: var(--fs-82);
-  background: #faf7f2;
-  color: #000;
-  border: 2px solid #000;
+  background: var(--fond);
+  color: var(--encre);
+  border: 2px solid var(--encre);
   padding: 0.65rem 0.85rem;
   transition: background 0.1s;
   resize: vertical;
@@ -92,20 +92,20 @@
 
 .input::placeholder,
 .textarea::placeholder {
-  color: #000;
+  color: var(--encre);
   opacity: 0.6;
 }
 
 .input:focus,
 .textarea:focus {
-  background: #f5f5f5;
+  background: var(--fond-accent);
 }
 
 .submitBtn {
   display: inline-block;
-  background: #000;
-  color: #fff;
-  border: 2px solid #000;
+  background: var(--encre);
+  color: var(--fond);
+  border: 2px solid var(--encre);
   padding: 0.75rem 2rem;
   font-family: 'IBM Plex Mono', monospace;
   font-size: var(--fs-80);
@@ -117,8 +117,8 @@
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: #fff;
-  color: #000;
+  background: var(--fond);
+  color: var(--encre);
 }
 
 .submitBtn:disabled {
@@ -136,7 +136,7 @@
   width: 1.1rem;
   height: 1.1rem;
   margin-top: 0.15rem;
-  accent-color: #000;
+  accent-color: var(--encre);
   cursor: pointer;
 }
 
@@ -158,7 +158,7 @@
   font-family: 'Space Mono', monospace;
   font-size: var(--fs-85);
   line-height: 1.7;
-  border: 2px solid #000;
+  border: 2px solid var(--encre);
   padding: 1.5rem;
   max-width: 480px;
 }
@@ -181,7 +181,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 2px solid #000;
+  border: 2px solid var(--encre);
 }
 
 .linkItem {
@@ -189,7 +189,7 @@
   flex-direction: column;
   gap: 0.2rem;
   padding: 0.9rem 1rem;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--encre);
 }
 
 .linkItem:last-child {
@@ -214,7 +214,7 @@
 }
 
 .linkValue:hover {
-  border-color: #000;
+  border-color: var(--encre);
 }
 
 @media (max-width: 900px) {
@@ -224,7 +224,7 @@
 
   .formSection {
     border-right: none;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--encre);
   }
 }
 

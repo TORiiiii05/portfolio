@@ -9,7 +9,7 @@
 /* ── HERO ── */
 .hero {
   padding: calc(5rem / 3) 2rem 4rem;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--encre);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -36,7 +36,7 @@
   font-family: 'Space Mono', monospace;
   font-size: clamp(var(--fs-85), calc(2vw + 2px), calc(1.1rem + 2px));
   line-height: 1.6;
-  border-left: 3px solid #000;
+  border-left: 3px solid var(--encre);
   padding-left: 1rem;
   max-width: 480px;
 }
@@ -51,7 +51,7 @@
 
 .heroCta {
   display: inline-block;
-  border: 2px solid #000;
+  border: 2px solid var(--encre);
   padding: 0.65rem 1.5rem;
   font-family: 'IBM Plex Mono', monospace;
   font-size: var(--fs-75);
@@ -62,8 +62,8 @@
 }
 
 .heroCta:hover {
-  background: #000;
-  color: #fff;
+  background: var(--encre);
+  color: var(--fond);
 }
 
 /* ── INDEX ── */
@@ -87,11 +87,11 @@
 }
 
 .indexItem {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--encre);
 }
 
 .indexItem:first-child {
-  border-top: 2px solid #000;
+  border-top: 2px solid var(--encre);
 }
 
 .indexLink {
@@ -104,8 +104,8 @@
 }
 
 .indexLink:hover {
-  background: #000;
-  color: #fff;
+  background: var(--encre);
+  color: var(--fond);
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   margin-left: -0.75rem;

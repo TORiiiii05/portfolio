@@ -12,6 +12,55 @@ const links = [
   { to: '/contact', label: 'CONTACT', short: '05' },
 ]
 
+// Mode nuit : le thème est posé sur <html data-theme> (dès le chargement par index.html)
+// et le choix du visiteur est mémorisé dans le navigateur.
+function BoutonTheme() {
+  const [sombre, setSombre] = useState(() => document.documentElement.dataset.theme === 'dark')
+
+  function basculer() {
+    const theme = sombre ? 'light' : 'dark'
+    document.documentElement.dataset.theme = theme
+    try {
+      localStorage.setItem('theme', theme)
+    } catch {
+      // Stockage indisponible (navigation privée…) : le choix vaut pour cette visite.
+    }
+    setSombre(!sombre)
+  }
+
+  return (
+    <button
+      type="button"
+      className={styles.theme}
+      onClick={basculer}
+      aria-pressed={sombre}
+      aria-label="Mode nuit"
+      title={sombre ? 'Passer en mode jour' : 'Passer en mode nuit'}
+    >
+      {sombre ? (
+        // Soleil : revenir au mode jour.
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" strokeWidth="2" />
+          <g stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" />
+          </g>
+        </svg>
+      ) : (
+        // Lune : passer en mode nuit.
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+          <path
+            d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinejoin="miter"
+          />
+        </svg>
+      )}
+    </button>
+  )
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const burger = useRef(null)
@@ -42,20 +91,6 @@ export default function Nav() {
         <span className={styles.brandSub}>Jules Del Frate</span>
       </Link>
 
-      <button
-        ref={burger}
-        type="button"
-        className={styles.burger}
-        onClick={() => setOpen((o) => !o)}
-        aria-label="Menu"
-        aria-expanded={open}
-        aria-controls="menu-principal"
-      >
-        <span className={open ? styles.burgerLineOpen : styles.burgerLine} />
-        <span className={open ? styles.burgerLineMidOpen : styles.burgerLine} />
-        <span className={open ? styles.burgerLineOpen : styles.burgerLine} />
-      </button>
-
       <nav
         id="menu-principal"
         aria-label="Navigation principale"
@@ -74,6 +109,23 @@ export default function Nav() {
           </Link>
         ))}
       </nav>
+
+      <div className={styles.actions}>
+        <BoutonTheme />
+        <button
+          ref={burger}
+          type="button"
+          className={styles.burger}
+          onClick={() => setOpen((o) => !o)}
+          aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="menu-principal"
+        >
+          <span className={open ? styles.burgerLineOpen : styles.burgerLine} />
+          <span className={open ? styles.burgerLineMidOpen : styles.burgerLine} />
+          <span className={open ? styles.burgerLineOpen : styles.burgerLine} />
+        </button>
+      </div>
     </header>
   )
 }
