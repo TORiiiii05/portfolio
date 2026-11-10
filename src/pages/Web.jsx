@@ -14,7 +14,7 @@ export default function Web() {
       <Doodle
         numero={7}
         taille={110}
-        top="40px"
+        top="16px"
         right="18%"
         mobile={{ taille: 60, top: '14px', right: '8px' }}
       />

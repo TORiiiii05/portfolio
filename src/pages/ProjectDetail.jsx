@@ -277,18 +277,20 @@ function Projet({ projet }) {
     navigate(-1)
   }
 
-  // Le doodle 05 est plus haut que les autres : on le remonte pour qu'il ne touche pas le titre.
-  const doodleTop = slug === 'accidents-route' ? '30px' : '42px'
+  // Le doodle se place à hauteur du lien « ← RETOUR », au-dessus du titre.
+  // Le doodle 05 est plus haut que les autres : il est un peu plus petit et plus haut.
+  const doodleTop = slug === 'accidents-route' ? '0px' : '2px'
+  const doodleTaille = slug === 'accidents-route' ? 38 : 44
 
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
         <Doodle
           numero={doodles[slug]}
-          taille={60}
+          taille={doodleTaille}
           top={doodleTop}
           right="2rem"
-          mobile={{ taille: 60, top: doodleTop, right: '16px' }}
+          mobile={{ taille: doodleTaille, top: doodleTop, right: '16px' }}
         />
         <Link to={`/${projet.categorie}`} onClick={retourner} className={styles.backLink}>
           ← RETOUR

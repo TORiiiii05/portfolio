@@ -54,7 +54,7 @@ export default function Experience() {
           taille={110}
           top="40px"
           right="8%"
-          mobile={{ taille: 60, top: '14px', right: '16px' }}
+          mobile={{ taille: 40, top: '0px', right: '16px' }}
         />
         <p className={styles.sectionNum}>04 —</p>
         <h1 className={styles.title}>Expériences</h1>
