@@ -8,7 +8,7 @@ import styles from './Contact.module.css'
 const links = [
   { label: 'Email', value: 'jules.delfrate@gmail.com', href: 'mailto:jules.delfrate@gmail.com' },
   { label: 'GitHub', value: 'github.com/TORiiiii05', href: 'https://github.com/TORiiiii05' },
-  { label: 'LinkedIn', value: 'linkedin.com/in/jules-del-frate-867622332', href: 'https://linkedin.com/in/jules-del-frate-867622332' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/jules-del-frate-372723329', href: 'https://linkedin.com/in/jules-del-frate-372723329' },
 ]
 
 export default function Contact() {
