@@ -143,6 +143,15 @@ export default function Contact() {
 
         <aside className={styles.aside}>
           <div className={styles.linksBlock}>
+            <p className={styles.blockLabel}>Mon CV</p>
+            <ul className={styles.linksList}>
+              <li className={styles.linkItem}>
+                <Link to="/cv" className={styles.linkValue}>Ouvrir le CV →</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className={styles.linksBlock}>
             <p className={styles.blockLabel}>LIENS DIRECTS</p>
             <ul className={styles.linksList}>
               {links.map(({ label, value, href }) => (

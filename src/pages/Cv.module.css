@@ -1,0 +1,32 @@
+/* Page /cv : la feuille A4 centrée sur le fond du site, avec la barre de boutons au-dessus. */
+.ecran {
+  padding: calc(4rem / 3) 2rem 4rem;
+  overflow-x: hidden;
+}
+
+.barre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto 1.5rem;
+}
+
+/* Le lien « ← RETOUR » des pages projet a une marge basse prévue pour le titre : pas ici. */
+.barre > a:first-child {
+  margin-bottom: 0;
+}
+
+/* Comme les autres boutons du site, le libellé s'affiche en capitales. */
+.telecharger {
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .ecran {
+    padding: 1rem 1.25rem 3rem;
+  }
+}

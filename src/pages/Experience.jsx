@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom'
+import BoutonRetour from '../components/BoutonRetour'
 import Doodle from '../components/Doodle'
 import usePageMeta from '../hooks/usePageMeta'
 import styles from './Experience.module.css'
@@ -44,10 +46,19 @@ const experiences = [
 ]
 
 export default function Experience() {
+  const location = useLocation()
   usePageMeta('Expériences', "Deux stages en environnement professionnel — en France et à l'international.")
 
   return (
     <div className={styles.page}>
+      {/* Seulement en arrivant par un lien d'À propos ou du CV (state.from) ;
+          reste alors visible en haut à gauche pendant le défilement, sous l'en-tête. */}
+      {location.state?.from && (
+        <div className={styles.retour}>
+          <BoutonRetour sansGardeFou />
+        </div>
+      )}
+
       <section className={styles.hero}>
         <Doodle
           numero={16}

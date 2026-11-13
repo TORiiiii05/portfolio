@@ -7,6 +7,7 @@ import Data from './pages/Data'
 import ProjectDetail from './pages/ProjectDetail'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
+import Cv from './pages/Cv'
 import MentionsLegales from './pages/MentionsLegales'
 import Confidentialite from './pages/Confidentialite'
 import NotFound from './pages/NotFound'
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/projets/:slug" element={<ProjectDetail />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/cv" element={<Cv />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/confidentialite" element={<Confidentialite />} />
         <Route path="/projects/iut" element={<Navigate to="/data" replace />} />

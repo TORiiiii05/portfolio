@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import BoutonRetour from '../components/BoutonRetour'
 import Doodle from '../components/Doodle'
 import LienExterne from '../components/LienExterne'
 import usePageMeta from '../hooks/usePageMeta'
@@ -253,8 +254,6 @@ export default function ProjectDetail() {
 }
 
 function Projet({ projet }) {
-  const location = useLocation()
-  const navigate = useNavigate()
   const { slug, titre, contexte, statut, tags, resume, lienExterne, sections, legendes, capturesDetourees = [], galerieEtapes, noteCaptures } = projet
   const captures = capturesDuProjet(slug)
   const suffixes = sections.map((section) => section.images).filter(Boolean)
@@ -268,14 +267,6 @@ function Projet({ projet }) {
   const proprietesFigures = { legendes, titre, premiere, detourees: capturesDetourees }
 
   usePageMeta(titre, resume)
-
-  // Arrivé depuis une autre page du site : on y revient, à la même position.
-  // Lien ouvert directement : le lien mène à la page de la catégorie du projet.
-  function retourner(e) {
-    if (location.key === 'default') return
-    e.preventDefault()
-    navigate(-1)
-  }
 
   // Le doodle se place à hauteur du lien « ← RETOUR », au-dessus du titre.
   // Le doodle 05 est plus haut que les autres : il est un peu plus petit et plus haut.
@@ -292,9 +283,8 @@ function Projet({ projet }) {
           right="2rem"
           mobile={{ taille: doodleTaille, top: doodleTop, right: '16px' }}
         />
-        <Link to={`/${projet.categorie}`} onClick={retourner} className={styles.backLink}>
-          ← RETOUR
-        </Link>
+        {/* Lien ouvert directement : le retour mène à la page de la catégorie du projet. */}
+        <BoutonRetour secours={`/${projet.categorie}`} />
         <h1 className={styles.detailTitle}>{titre}</h1>
         {contexte && <p className={styles.heroSub}>{contexte}</p>}
         {(tags.length > 0 || statut) && (

@@ -1,9 +1,34 @@
 .page {
   position: relative;
+  /* « clip » rogne les doodles comme « hidden », sans empêcher le bouton Retour de rester collé. */
   overflow: hidden;
+  overflow: clip;
   isolation: isolate;
   display: flex;
   flex-direction: column;
+}
+
+/* Bouton Retour toujours visible : collé juste sous l'en-tête du site pendant le défilement,
+   aligné sur la marge gauche du contenu, fond opaque pour masquer le texte qui passe dessous. */
+.retour {
+  position: sticky;
+  top: calc(var(--hauteur-entete) + 16px);
+  z-index: 20;
+  align-self: flex-start;
+  margin: calc(4rem / 3) 0 0 calc(2rem - 0.5rem);
+  padding: 0.4rem 0.5rem;
+  background: var(--fond);
+}
+
+/* Le lien des pages projet a une marge basse prévue pour leur titre : pas ici. */
+.retour > a {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+/* Avec le bouton au-dessus, le titre n'a pas besoin de toute sa marge haute. */
+.retour + .hero {
+  padding-top: 0.75rem;
 }
 
 .hero {
@@ -47,8 +72,9 @@
   display: grid;
   grid-template-columns: 80px 1fr;
   border-bottom: 2px solid var(--encre);
-  /* Arrivée par ancre (#orange-france…) : le bloc s'arrête sous l'en-tête fixe. */
-  scroll-margin-top: calc(var(--hauteur-entete) + 24px);
+  /* Arrivée par ancre (#orange-france…) : le bloc s'arrête sous l'en-tête fixe
+     et sous le bouton Retour collé (16 px + ~2.5rem de bouton + 16 px d'air). */
+  scroll-margin-top: calc(var(--hauteur-entete) + 16px + 2.5rem + 16px);
 }
 
 .expHighlight {
@@ -219,6 +245,11 @@
   .hero, .expBody, .cvSection {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+  }
+
+  .retour {
+    margin-left: calc(1.25rem - 0.5rem);
+    padding: 0.3rem 0.5rem;
   }
 
   .expItem {

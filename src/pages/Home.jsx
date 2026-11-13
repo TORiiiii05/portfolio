@@ -33,9 +33,14 @@ export default function Home() {
         <p className={styles.heroCatch}>
           Du design au code. Curieux, créatif, et toujours en train de construire quelque chose.
         </p>
-        <Link to="/about" className={styles.heroCta}>
-          <span>Découvrir →</span>
-        </Link>
+        <div className={styles.heroActions}>
+          <Link to="/about" className={styles.heroCta}>
+            <span>Découvrir →</span>
+          </Link>
+          <Link to="/cv" className={`${styles.heroCta} ${styles.heroCtaSecondaire}`}>
+            <span>Voir mon CV</span>
+          </Link>
+        </div>
       </section>
 
       <section className={styles.index}>

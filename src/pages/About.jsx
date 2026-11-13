@@ -68,7 +68,12 @@ function HautDeCarte({ vignette, vignetteTexte }) {
 
 function CarteApercu({ titre, meta, lien, vignette, vignetteTexte, badge }) {
   return (
-    <Link to={lien} state={{ from: '/about' }} className={styles.carte}>
+    <Link
+      to={lien}
+      // Vers Expériences : « a-propos » fait apparaître le bouton Retour sur cette page.
+      state={{ from: lien.startsWith('/experience') ? 'a-propos' : '/about' }}
+      className={styles.carte}
+    >
       <HautDeCarte vignette={vignette} vignetteTexte={vignetteTexte} />
       <span className={styles.carteCorps}>
         <span className={styles.carteTitre}>{titre}</span>

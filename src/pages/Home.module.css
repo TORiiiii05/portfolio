@@ -66,6 +66,18 @@
   color: var(--fond);
 }
 
+/* « Découvrir » et « Voir mon CV » côte à côte, l'un sous l'autre s'ils ne tiennent pas. */
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Bouton secondaire : contour noir, fond transparent. */
+.heroCtaSecondaire {
+  background: transparent;
+}
+
 /* ── INDEX ── */
 .index {
   padding: 3rem 2rem 4rem;
